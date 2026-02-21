@@ -1,0 +1,1 @@
+export { SymptomCheckerPage } from './stubs'

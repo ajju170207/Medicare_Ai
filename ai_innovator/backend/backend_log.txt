@@ -1,0 +1,332 @@
+
+> backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/server.ts
+
+[INFO] 23:17:27 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+[dotenv@17.3.1] injecting env (10) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: 🤖 agentic secret storage: https://dotenvx.com/as2
+✅ MedicareAI Server running in development mode on port 5001
+📡 Supabase: https://gztasrkaankwbwoirhxs.supabase.co
+[0mGET /health [32m200[0m 1.599 ms - 54[0m
+Calling ML Service at http://localhost:5002/predict with symptoms: [
+  'breathlessness',
+  'cough',
+  'dehydration',
+  'nausea',
+  'dark_urine',
+  'throat_irritation'
+]
+ML Service response: {
+  description: 'Hepatitis D is a serious liver disease caused by the hepatitis D virus.',
+  diet: [
+    'Hepatitis D Diet',
+    'High-Calorie Diet',
+    'Soft and bland foods',
+    'Hydration',
+    'Protein-rich foods'
+  ],
+  disease: 'Hepatitis D',
+  medications: [
+    'Antiviral drugs',
+    'IV fluids',
+    'Blood transfusions',
+    'Platelet transfusions',
+    'Liver transplant'
+  ],
+  precautions: [ 'consult doctor', 'medication', 'eat healthy', 'follow up' ],
+  recognized_symptoms: [
+    'breathlessness',
+    'cough',
+    'dehydration',
+    'nausea',
+    'dark urine',
+    'throat irritation'
+  ],
+  workout: [
+    'Follow a balanced and nutritious diet',
+    'Stay hydrated',
+    'Include protein-rich foods',
+    'Consume nutrient-rich foods',
+    'Limit fatty foods',
+    'Avoid alcohol and caffeine',
+    'Include vitamin C-rich foods',
+    'Consult a healthcare professional',
+    'Rest and conserve energy',
+    'Gradually resume normal diet'
+  ]
+}
+Gemini Analysis Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:434:11)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at makeRequest (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:403:9)
+    at generateContent (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:867:22)
+    at analyzeSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/services/geminiService.ts:34:24)
+    at analyzeUserSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/controllers/symptomController.ts:54:34) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+Final Result being sent to frontend: {
+  "primaryCondition": "Hepatitis D",
+  "confidence": 0.98,
+  "specialist": "General Physician",
+  "urgency": "urgent",
+  "description": "Hepatitis D is a serious liver disease caused by the hepatitis D virus.",
+  "recommendations": [
+    "consult doctor",
+    "medication",
+    "eat healthy",
+    "follow up",
+    "Seek medical attention immediately if symptoms persist."
+  ],
+  "disclaimer": "This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.",
+  "details": {
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ],
+    "diet": [
+      "Hepatitis D Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout": [
+      "Follow a balanced and nutritious diet",
+      "Stay hydrated",
+      "Include protein-rich foods",
+      "Consume nutrient-rich foods",
+      "Limit fatty foods",
+      "Avoid alcohol and caffeine",
+      "Include vitamin C-rich foods",
+      "Consult a healthcare professional",
+      "Rest and conserve energy",
+      "Gradually resume normal diet"
+    ]
+  }
+}
+[0mPOST /api/v1/symptoms/analyze [32m200[0m 1726.077 ms - 1051[0m
+Calling ML Service at http://localhost:5002/predict with symptoms: [ 'itching' ]
+ML Service response: {
+  description: 'Fungal infection is a common skin condition caused by fungi.',
+  diet: [
+    'Antifungal Diet',
+    'Probiotics',
+    'Garlic',
+    'Coconut oil',
+    'Turmeric'
+  ],
+  disease: 'Fungal infection',
+  medications: [
+    'Antifungal Cream',
+    'Fluconazole',
+    'Terbinafine',
+    'Clotrimazole',
+    'Ketoconazole'
+  ],
+  precautions: [
+    'bath twice',
+    'use detol or neem in bathing water',
+    'keep infected area dry',
+    'use clean cloths'
+  ],
+  recognized_symptoms: [ 'itching' ],
+  workout: [
+    'Avoid sugary foods',
+    'Consume probiotics',
+    'Increase intake of garlic',
+    'Include yogurt in diet',
+    'Limit processed foods',
+    'Stay hydrated',
+    'Consume green tea',
+    'Eat foods rich in zinc',
+    'Include turmeric in diet',
+    'Eat fruits and vegetables'
+  ]
+}
+Gemini Analysis Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:434:11)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at makeRequest (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:403:9)
+    at generateContent (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:867:22)
+    at analyzeSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/services/geminiService.ts:34:24)
+    at analyzeUserSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/controllers/symptomController.ts:54:34) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+Final Result being sent to frontend: {
+  "primaryCondition": "Fungal infection",
+  "confidence": 0.98,
+  "specialist": "General Physician",
+  "urgency": "urgent",
+  "description": "Fungal infection is a common skin condition caused by fungi.",
+  "recommendations": [
+    "bath twice",
+    "use detol or neem in bathing water",
+    "keep infected area dry",
+    "use clean cloths",
+    "Seek medical attention immediately if symptoms persist."
+  ],
+  "disclaimer": "This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.",
+  "details": {
+    "medications": [
+      "Antifungal Cream",
+      "Fluconazole",
+      "Terbinafine",
+      "Clotrimazole",
+      "Ketoconazole"
+    ],
+    "diet": [
+      "Antifungal Diet",
+      "Probiotics",
+      "Garlic",
+      "Coconut oil",
+      "Turmeric"
+    ],
+    "workout": [
+      "Avoid sugary foods",
+      "Consume probiotics",
+      "Increase intake of garlic",
+      "Include yogurt in diet",
+      "Limit processed foods",
+      "Stay hydrated",
+      "Consume green tea",
+      "Eat foods rich in zinc",
+      "Include turmeric in diet",
+      "Eat fruits and vegetables"
+    ]
+  }
+}
+[0mPOST /api/v1/symptoms/analyze [32m200[0m 2223.830 ms - 982[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.531255130644205&lng=73.86877383019156 [33m400[0m 10508.021 ms - 53[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.531255130644205&lng=73.86877383019156 [32m200[0m 11655.183 ms - 36[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.531255130644205&lng=73.86877383019156 [36m304[0m 8912.913 ms - -[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.531255130644205&lng=73.86877383019156 [36m304[0m 2557.431 ms - -[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.531255130644205&lng=73.86877383019156 [36m304[0m 152.334 ms - -[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.53007369061645&lng=73.87039020170114 [32m200[0m 1359.244 ms - 36[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.53007369061645&lng=73.87039020170114 [36m304[0m 164.704 ms - -[0m
+[0mGET /api/v1/hospitals/nearby?lat=18.53007369061645&lng=73.87039020170114 [36m304[0m 68.036 ms - -[0m
+[0mGET /api/v1/diseases [36m304[0m 941.168 ms - -[0m
+[0mGET /api/v1/diseases [36m304[0m 76.854 ms - -[0m
+[0mGET /api/v1/diseases?search=f [32m200[0m 181.050 ms - 574[0m
+[0mGET /api/v1/diseases?search=fe [32m200[0m 65.941 ms - 574[0m
+[0mGET /api/v1/diseases?search=fev [32m200[0m 92.088 ms - 65[0m
+[0mGET /api/v1/diseases?search=feve [32m200[0m 66.323 ms - 65[0m
+[0mGET /api/v1/diseases?search=fever [32m200[0m 56.684 ms - 648[0m
+[0mGET /api/v1/diseases?search=fever, [32m200[0m 67.385 ms - 648[0m
+[0mGET /api/v1/diseases?search=fever, [36m304[0m 79.562 ms - -[0m
+[0mGET /api/v1/diseases?search=fever,%20h [32m200[0m 66.092 ms - 65[0m
+[0mGET /api/v1/diseases?search=fever,%20he [32m200[0m 68.738 ms - 648[0m
+[0mGET /api/v1/diseases?search=fever,%20hea [32m200[0m 64.067 ms - 65[0m
+[0mGET /api/v1/diseases?search=fever,%20head [32m200[0m 65.743 ms - 65[0m
+[0mGET /api/v1/diseases?search=fever,%20hea [36m304[0m 146.515 ms - -[0m
+[0mGET /api/v1/diseases?search=fever,%20he [36m304[0m 78.091 ms - -[0m
+[0mGET /api/v1/diseases?search=fever,%20h [36m304[0m 67.610 ms - -[0m
+[0mGET /api/v1/diseases?search=fever, [36m304[0m 69.763 ms - -[0m
+[0mGET /api/v1/diseases?search=fever, [36m304[0m 71.561 ms - -[0m
+[0mGET /api/v1/diseases?search=fever [36m304[0m 74.910 ms - -[0m
+[0mGET /api/v1/diseases?search=feve [36m304[0m 69.029 ms - -[0m
+[0mGET /api/v1/diseases?search=fev [36m304[0m 88.896 ms - -[0m
+[0mGET /api/v1/diseases?search=fe [36m304[0m 501.810 ms - -[0m
+[0mGET /api/v1/diseases?search=f [36m304[0m 77.756 ms - -[0m
+[0mGET /api/v1/diseases [36m304[0m 74.487 ms - -[0m
+Calling ML Service at http://localhost:5002/predict with symptoms: [ 'itching', 'high_fever' ]
+ML Service response: {
+  description: 'Fungal infection is a common skin condition caused by fungi.',
+  diet: [
+    'Antifungal Diet',
+    'Probiotics',
+    'Garlic',
+    'Coconut oil',
+    'Turmeric'
+  ],
+  disease: 'Fungal infection',
+  medications: [
+    'Antifungal Cream',
+    'Fluconazole',
+    'Terbinafine',
+    'Clotrimazole',
+    'Ketoconazole'
+  ],
+  precautions: [
+    'bath twice',
+    'use detol or neem in bathing water',
+    'keep infected area dry',
+    'use clean cloths'
+  ],
+  recognized_symptoms: [ 'itching', 'high fever' ],
+  workout: [
+    'Avoid sugary foods',
+    'Consume probiotics',
+    'Increase intake of garlic',
+    'Include yogurt in diet',
+    'Limit processed foods',
+    'Stay hydrated',
+    'Consume green tea',
+    'Eat foods rich in zinc',
+    'Include turmeric in diet',
+    'Eat fruits and vegetables'
+  ]
+}
+Gemini Analysis Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:434:11)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at makeRequest (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:403:9)
+    at generateContent (/Users/ajay/Desktop/web/ai_innovator/backend/node_modules/@google/generative-ai/dist/index.js:867:22)
+    at analyzeSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/services/geminiService.ts:34:24)
+    at analyzeUserSymptoms (/Users/ajay/Desktop/web/ai_innovator/backend/src/controllers/symptomController.ts:54:34) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+Final Result being sent to frontend: {
+  "primaryCondition": "Fungal infection",
+  "confidence": 0.98,
+  "specialist": "General Physician",
+  "urgency": "urgent",
+  "description": "Fungal infection is a common skin condition caused by fungi.",
+  "recommendations": [
+    "bath twice",
+    "use detol or neem in bathing water",
+    "keep infected area dry",
+    "use clean cloths",
+    "Seek medical attention immediately if symptoms persist."
+  ],
+  "disclaimer": "This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.",
+  "details": {
+    "medications": [
+      "Antifungal Cream",
+      "Fluconazole",
+      "Terbinafine",
+      "Clotrimazole",
+      "Ketoconazole"
+    ],
+    "diet": [
+      "Antifungal Diet",
+      "Probiotics",
+      "Garlic",
+      "Coconut oil",
+      "Turmeric"
+    ],
+    "workout": [
+      "Avoid sugary foods",
+      "Consume probiotics",
+      "Increase intake of garlic",
+      "Include yogurt in diet",
+      "Limit processed foods",
+      "Stay hydrated",
+      "Consume green tea",
+      "Eat foods rich in zinc",
+      "Include turmeric in diet",
+      "Eat fruits and vegetables"
+    ]
+  }
+}
+[0mPOST /api/v1/symptoms/analyze [32m200[0m 949.312 ms - 982[0m

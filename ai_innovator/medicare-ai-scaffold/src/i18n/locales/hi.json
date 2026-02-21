@@ -1,0 +1,43 @@
+{
+  "app": {
+    "name": "Medicare AI",
+    "tagline": "आपका AI-संचालित स्वास्थ्य साथी"
+  },
+  "nav": {
+    "home": "होम",
+    "symptomChecker": "लक्षण जांचकर्ता",
+    "imageChecker": "छवि जांचकर्ता",
+    "emergency": "आपातकाल",
+    "diseaseLibrary": "रोग पुस्तकालय",
+    "hospitalFinder": "अस्पताल खोजें",
+    "history": "मेरा इतिहास",
+    "settings": "सेटिंग्स",
+    "whatsNew": "नया क्या है"
+  },
+  "auth": {
+    "signIn": "साइन इन करें",
+    "signUp": "साइन अप करें",
+    "phone": "मोबाइल नंबर",
+    "phonePlaceholder": "10 अंकों का मोबाइल नंबर दर्ज करें…",
+    "password": "पासवर्ड",
+    "fullName": "पूरा नाम",
+    "sendOtp": "OTP भेजें",
+    "verifyOtp": "OTP सत्यापित करें",
+    "resendOtp": "OTP पुनः भेजें",
+    "signingIn": "साइन इन हो रहा है…"
+  },
+  "symptomChecker": {
+    "title": "लक्षण जांचकर्ता",
+    "disclaimer": "यह चिकित्सा निदान नहीं है। योग्य डॉक्टर से परामर्श लें।",
+    "analyze": "लक्षणों का विश्लेषण करें",
+    "analyzing": "आपके लक्षणों का विश्लेषण हो रहा है…"
+  },
+  "emergency": {
+    "title": "आपातकालीन सेवाएं",
+    "callNow": "अभी कॉल करें"
+  },
+  "common": {
+    "loading": "लोड हो रहा है…",
+    "error": "कुछ गलत हो गया। कृपया पुनः प्रयास करें।"
+  }
+}

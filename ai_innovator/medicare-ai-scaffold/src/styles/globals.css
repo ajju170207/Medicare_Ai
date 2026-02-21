@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────── */
+:root {
+  --color-brand-primary:    #0057D9;
+  --color-brand-secondary:  #00B894;
+  --color-brand-danger:     #E53E3E;
+  --color-brand-surface:    #F7F9FC;
+  --color-brand-border:     #E4E8EF;
+  --color-brand-text:       #1A202C;
+  --color-brand-muted:      #8A94A6;
+
+  color-scheme: light;
+}
+
+/* ─── Base resets ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', 'Noto Sans', sans-serif;
+  color: #1A202C;
+  background-color: #F7F9FC;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Focus visible global baseline ────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Typography utilities ──────────────────────────────────────────── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Scrollbar styling ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E4E8EF;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8A94A6;
+}
+
+/* ─── Ant Design overrides ──────────────────────────────────────────── */
+.ant-btn-primary {
+  background-color: var(--color-brand-primary) !important;
+}
+
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #1A202C;
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector,
+.ant-input-number {
+  border-radius: 8px !important;
+}
+
+.ant-alert {
+  border-radius: 8px;
+}
+
+/* ─── Safe area insets (notched devices) ────────────────────────────── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* ─── Accordion animation ───────────────────────────────────────────── */
+[data-radix-accordion-content] {
+  overflow: hidden;
+}
+
+[data-radix-accordion-content][data-state='open'] {
+  animation: accordion-down 0.2s ease-out;
+}
+
+[data-radix-accordion-content][data-state='closed'] {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-radix-accordion-content][data-state='open'],
+  [data-radix-accordion-content][data-state='closed'] {
+    animation: none;
+  }
+}
