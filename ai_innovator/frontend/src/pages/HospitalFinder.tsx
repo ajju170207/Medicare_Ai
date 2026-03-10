@@ -164,7 +164,6 @@ const HospitalFinder: React.FC = () => {
     const handleSearch = () => {
         if (!diseaseQuery.trim()) {
             setFilteredHospitals(hospitals);
-            setRecommendedTypes([]);
             setRecommendedSpecialist(null);
             updateMarkers(hospitals);
             return;
