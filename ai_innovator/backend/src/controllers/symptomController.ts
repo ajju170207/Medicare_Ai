@@ -1,11 +1,15 @@
 import { Response } from 'express';
 import axios from 'axios';
 import { AuthRequest } from '../middleware/auth.middleware';
-import { supabase } from '../config/supabase';
+import UserHistory from '../models/UserHistory';
+import Notification from '../models/Notification';
+import DailyTip from '../models/DailyTip';
 import { analyzeSymptoms } from '../services/geminiService';
+import { sendNotificationEmail } from '../services/emailService';
+import { diseaseMappings } from '../utils/diseaseMapping';
 
 // ML Service URL (Python Flask)
-const ML_SERVICE_URL = 'http://localhost:5002';
+const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:5002';
 
 // @desc    Analyze symptoms and save to history
 // @route   POST /api/v1/symptoms/analyze
@@ -32,13 +36,9 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
             console.log('ML Service response:', mlPrediction);
         } catch (error: any) {
             console.error('ML Service unavailable or failed:', error.message);
-            if (error.response) {
-                console.error('ML Service Error Data:', error.response.data);
-            }
         }
 
         // 2. Call Gemini for detailed analysis and validation
-        // We only use Gemini if ML fails or to get specialist/urgency info
         if (!mlPrediction || !mlPrediction.disease) {
             try {
                 const context = `Symptoms: ${symptoms}.`;
@@ -47,8 +47,6 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
                 console.error('Gemini failed:', err);
             }
         } else {
-            // ML Succeeded. We might still want specialist info from Gemini if it's quick
-            // but for now, let's prioritize the ML model's data.
             try {
                 const context = `ML Predicted: ${mlPrediction.disease}. Symptoms: ${symptoms}.`;
                 geminiAnalysis = await analyzeSymptoms(context, duration, severity);
@@ -61,8 +59,12 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
         const finalResult = {
             primaryCondition: mlPrediction?.disease || geminiAnalysis?.primaryCondition || "Unknown",
             confidence: mlPrediction ? 0.98 : (geminiAnalysis?.conditions?.[0]?.confidence || 0),
-            specialist: geminiAnalysis?.specialist || "General Physician",
-            urgency: geminiAnalysis?.urgency || "non-urgent",
+            specialist: (geminiAnalysis?.specialist && geminiAnalysis.specialist !== "General Physician")
+                ? geminiAnalysis.specialist
+                : (mlPrediction?.disease ? (diseaseMappings[mlPrediction.disease]?.specialist || "General Physician") : "General Physician"),
+            urgency: (geminiAnalysis?.urgency && geminiAnalysis.urgency !== "urgent")
+                ? geminiAnalysis.urgency
+                : (mlPrediction?.disease ? (diseaseMappings[mlPrediction.disease]?.urgency || "urgent") : "urgent"),
             description: mlPrediction?.description || geminiAnalysis?.conditions?.[0]?.description || "Information not available.",
             recommendations: [
                 ...(mlPrediction?.precautions || []),
@@ -94,31 +96,62 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
             dbUrgency = 'low';
         }
 
-        // 3. Save to Supabase
-        const historyEntry = {
+        // 3. Save to MongoDB
+        const historyEntry = new UserHistory({
             user_id: req.user!.id,
-            type: 'symptom_check' as const,
+            type: 'symptom_check',
             input_data: { symptoms, duration, severity, location, age, gender },
             result: finalResult,
             disease_name: finalResult.primaryCondition,
             confidence: finalResult.confidence,
             severity: dbSeverity,
             urgency: dbUrgency,
-        };
+        });
 
-        const { data: history, error } = await supabase
-            .from('user_history')
-            .insert(historyEntry)
-            .select()
-            .single();
+        const history = await historyEntry.save();
 
-        if (error) {
-            console.error('Failed to save history:', error.message);
+        // 4. Create Notification and Send Email
+        const notificationTitle = 'New Symptom Analysis Ready';
+        const notificationBody = `Your health analysis for ${finalResult.primaryCondition} is complete. Risk level: ${dbUrgency.toUpperCase()}.`;
+
+        try {
+            await Notification.create({
+                user_id: req.user!.id,
+                title: notificationTitle,
+                body: notificationBody,
+                type: 'alert',
+                action_url: `/history/${history.id}`,
+                metadata: { history_id: history.id, condition: finalResult.primaryCondition }
+            });
+
+            if (req.user!.email) {
+                await sendNotificationEmail(
+                    req.user!.email,
+                    notificationTitle,
+                    notificationBody,
+                    `
+                    <div style="font-family: sans-serif; color: #374151;">
+                        <h2 style="color: #0d9488;">Health Analysis Ready</h2>
+                        <p>Hello,</p>
+                        <p>A new health assessment has been generated for you.</p>
+                        <div style="background-color: #f0fdfa; padding: 20px; border-radius: 12px; border: 1px solid #ccfbf1;">
+                            <p><strong>Primary Condition:</strong> ${finalResult.primaryCondition}</p>
+                            <p><strong>Urgency:</strong> <span style="color: ${dbUrgency === 'high' ? '#ef4444' : '#0d9488'}; font-weight: bold;">${dbUrgency.toUpperCase()}</span></p>
+                            <p><strong>Description:</strong> ${finalResult.description}</p>
+                        </div>
+                        <p style="margin-top: 20px; font-style: italic; color: #6b7280;">Disclaimer: This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.</p>
+                        <p>Best regards,<br/>Medicare AI Team</p>
+                    </div>
+                    `
+                );
+            }
+        } catch (notifErr: any) {
+            console.error('Failed to process notification/email:', notifErr.message);
         }
 
         res.status(200).json({
             success: true,
-            data: { result: finalResult, history_id: history?.id },
+            data: { result: finalResult, history_id: history.id },
         });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
@@ -131,31 +164,34 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
 export const getUserHistory = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
         const { type, limit = 20, page = 1 } = req.query;
-        const offset = (Number(page) - 1) * Number(limit);
+        const pageNum = Number(page);
+        const limitNum = Number(limit);
+        const skip = (pageNum - 1) * limitNum;
 
-        let query = supabase
-            .from('user_history')
-            .select('*', { count: 'exact' })
-            .eq('user_id', req.user!.id)
-            .is('deleted_at', null)
-            .order('created_at', { ascending: false })
-            .range(offset, offset + Number(limit) - 1);
+        let query: any = { user_id: req.user!.id, deleted_at: null };
 
         if (type) {
-            query = query.eq('type', type);
+            query.type = type;
         }
 
-        const { data, error, count } = await query;
+        const data = await UserHistory.find(query)
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limitNum);
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
-        }
+        const count = await UserHistory.countDocuments(query);
+
+        // Process for frontend compatibility
+        const formattedData = data.map(item => ({
+            ...item.toObject(),
+            id: item._id, // map _id to id
+            created_at: item.createdAt
+        }));
 
         res.status(200).json({
             success: true,
             count,
-            data,
+            data: formattedData,
         });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
@@ -167,15 +203,34 @@ export const getUserHistory = async (req: AuthRequest, res: Response): Promise<v
 // @access  Private
 export const getDashboard = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { data, error } = await supabase
-            .rpc('get_user_dashboard', { p_user_id: req.user!.id });
+        const userId = req.user!.id;
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
-        }
+        const [total_checks, recent_checks_raw, unread_notifications, daily_tip] = await Promise.all([
+            UserHistory.countDocuments({ user_id: userId, deleted_at: null }),
+            UserHistory.find({ user_id: userId, deleted_at: null })
+                .sort({ createdAt: -1 })
+                .limit(5)
+                .select('_id createdAt disease_name severity'),
+            Notification.countDocuments({ user_id: userId, read: false }),
+            DailyTip.findOne({ is_active: true, tip_date: { $lte: new Date() } })
+                .sort({ tip_date: -1 })
+        ]);
 
-        res.status(200).json({ success: true, data });
+        const recent_checks = recent_checks_raw.map(check => ({
+            id: check._id,
+            created_at: check.createdAt,
+            disease_name: check.disease_name,
+            severity: check.severity
+        }));
+
+        const dashboardData = {
+            total_checks,
+            recent_checks,
+            unread_notifications,
+            daily_tip: daily_tip ? { tip_text: daily_tip.tip_text, id: daily_tip._id } : null
+        };
+
+        res.status(200).json({ success: true, data: dashboardData });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -188,14 +243,13 @@ export const deleteHistoryItem = async (req: AuthRequest, res: Response): Promis
     try {
         const { id } = req.params;
 
-        const { error } = await supabase
-            .from('user_history')
-            .update({ deleted_at: new Date().toISOString() })
-            .eq('id', id)
-            .eq('user_id', req.user!.id);
+        const item = await UserHistory.findOneAndUpdate(
+            { _id: id, user_id: req.user!.id },
+            { deleted_at: new Date() }
+        );
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
+        if (!item) {
+            res.status(404).json({ success: false, message: 'History item not found or unauthorized' });
             return;
         }
 
