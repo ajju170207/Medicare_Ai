@@ -53,7 +53,6 @@ const HospitalFinder: React.FC = () => {
     const [filteredHospitals, setFilteredHospitals] = useState<any[]>([]);
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
     const [diseaseQuery, setDiseaseQuery] = useState('');
-    const [recommendedTypes, setRecommendedTypes] = useState<string[]>([]);
     const [_userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
     const [recommendedSpecialist, setRecommendedSpecialist] = useState<{ specialist: string; types: string[]; emoji: string } | null>(null);
 
@@ -173,7 +172,6 @@ const HospitalFinder: React.FC = () => {
 
         const rec = analyzeDisease(diseaseQuery);
         setRecommendedSpecialist(rec);
-        setRecommendedTypes(rec.types);
 
         let filtered = hospitals;
         if (categoryFilter !== 'all') {
@@ -208,12 +206,11 @@ const HospitalFinder: React.FC = () => {
             filtered = filtered.filter(h => h.category === categoryFilter);
         }
 
-        // If there's a disease query, apply it too
         if (diseaseQuery.trim()) {
-            const recTypes = analyzeDisease(diseaseQuery);
+            const recInfo = analyzeDisease(diseaseQuery);
             filtered = filtered.filter(h =>
-                recTypes.includes(h.type) ||
-                (h.type === 'hospital' && recTypes.includes('medical'))
+                recInfo.types.includes(h.type) ||
+                (h.type === 'hospital' && recInfo.types.includes('medical'))
             );
         }
 
