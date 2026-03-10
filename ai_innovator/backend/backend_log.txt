@@ -236,7 +236,12 @@ Final Result being sent to frontend: {
 [0mGET /api/v1/diseases?search=fev [36m304[0m 88.896 ms - -[0m
 [0mGET /api/v1/diseases?search=fe [36m304[0m 501.810 ms - -[0m
 [0mGET /api/v1/diseases?search=f [36m304[0m 77.756 ms - -[0m
-[0mGET /api/v1/diseases [36m304[0m 74.487 ms - -[0m
+[0mGET /api/v1/diseases [36m304[0m 74.487 ms - Confirmed that the ML service health endpoint (`http://localhost:5002/health`) returns **200**.
+- Fixed static recommendations and urgency levels in `symptomController.ts` by:
+    - Implementing a comprehensive disease-to-specialist and urgency mapping utility.
+    - Updating the Gemini AI service model to `gemini-1.5-flash-latest` to resolve API 404 errors.
+    - Adding smart fallback logic that uses the mapping if the AI service fails or returns default values.
+- Frontend Vite dev server is already running at `http://localhost:5173/`.
 Calling ML Service at http://localhost:5002/predict with symptoms: [ 'itching', 'high_fever' ]
 ML Service response: {
   description: 'Fungal infection is a common skin condition caused by fungi.',

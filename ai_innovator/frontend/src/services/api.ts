@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { supabase } from '../lib/supabase';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api/v1';
 
@@ -10,12 +9,12 @@ const api = axios.create({
     },
 });
 
-// Add request interceptor to attach Supabase access token
+// Add request interceptor to attach access token
 api.interceptors.request.use(
-    async (config) => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session?.access_token) {
-            config.headers.Authorization = `Bearer ${session.access_token}`;
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
     },
@@ -25,10 +24,12 @@ api.interceptors.request.use(
 // Response interceptor for token expiry
 api.interceptors.response.use(
     (response) => response,
-    async (error) => {
+    (error) => {
         if (error.response?.status === 401) {
-            // Attempt to refresh session
-            await supabase.auth.refreshSession();
+            // Token expired or invalid
+            localStorage.removeItem('token');
+            // We could trigger a global event here to force logout if needed
+            window.dispatchEvent(new Event('auth:unauthorized'));
         }
         return Promise.reject(error);
     }

@@ -1,0 +1,5044 @@
+[
+  {
+    "name": "Fungal infection",
+    "slug": "fungal-infection",
+    "description": "Fungal infection is a common skin condition caused by fungi.",
+    "symptoms": [
+      "itching",
+      "skin_rash",
+      "nodal_skin_eruptions",
+      "dischromic _patches"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antifungal Cream",
+      "Fluconazole",
+      "Terbinafine",
+      "Clotrimazole",
+      "Ketoconazole"
+    ],
+    "diet_recommendations": [
+      "Antifungal Diet",
+      "Probiotics",
+      "Garlic",
+      "Coconut oil",
+      "Turmeric"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Allergy",
+    "slug": "allergy",
+    "description": "Allergy is an immune system reaction to a substance in the environment.",
+    "symptoms": [
+      "continuous_sneezing",
+      "shivering",
+      "chills",
+      "watering_from_eyes"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antihistamines",
+      "Decongestants",
+      "Epinephrine",
+      "Corticosteroids",
+      "Immunotherapy"
+    ],
+    "diet_recommendations": [
+      "Elimination Diet",
+      "Omega-3-rich foods",
+      "Vitamin C-rich foods",
+      "Quercetin-rich foods",
+      "Probiotics"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "GERD",
+    "slug": "gerd",
+    "description": "GERD (Gastroesophageal Reflux Disease) is a digestive disorder that affects the lower esophageal sphincter.",
+    "symptoms": [
+      "stomach_pain",
+      "cough",
+      "chest_pain",
+      "acidity",
+      "ulcers_on_tongue",
+      "vomiting"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Proton Pump Inhibitors (PPIs)",
+      "H2 Blockers",
+      "Antacids",
+      "Prokinetics",
+      "Antibiotics"
+    ],
+    "diet_recommendations": [
+      "Low-Acid Diet",
+      "Fiber-rich foods",
+      "Ginger",
+      "Licorice",
+      "Aloe vera juice"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Chronic cholestasis",
+    "slug": "chronic-cholestasis",
+    "description": "Chronic cholestasis is a condition where bile flow from the liver is reduced for a prolonged period.",
+    "symptoms": [
+      "itching",
+      "vomiting",
+      "yellowish_skin",
+      "nausea",
+      "loss_of_appetite",
+      "abdominal_pain",
+      "yellowing_of_eyes"
+    ],
+    "severity_score": 7.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Ursodeoxycholic acid",
+      "Cholestyramine",
+      "Methotrexate",
+      "Corticosteroids",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Low-Fat Diet",
+      "High-Fiber Diet",
+      "Lean proteins",
+      "Whole grains",
+      "Fresh fruits and vegetables"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Drug Reaction",
+    "slug": "drug-reaction",
+    "description": "Drug Reaction occurs when the body reacts adversely to a medication.",
+    "symptoms": [
+      "itching",
+      "skin_rash",
+      "stomach_pain",
+      "burning_micturition",
+      "spotting_ urination"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antihistamines",
+      "Epinephrine",
+      "Corticosteroids",
+      "Antibiotics",
+      "Antifungal Cream"
+    ],
+    "diet_recommendations": [
+      "Antihistamine Diet",
+      "Omega-3-rich foods",
+      "Vitamin C-rich foods",
+      "Quercetin-rich foods",
+      "Probiotics"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Peptic ulcer diseae",
+    "slug": "peptic-ulcer-diseae",
+    "description": "Peptic ulcer diseae — Description pending.",
+    "symptoms": [
+      "vomiting",
+      "abdominal_pain",
+      "passage_of_gases",
+      "internal_itching",
+      "loss_of_appetite",
+      "indigestion"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [],
+    "diet_recommendations": [],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "AIDS",
+    "slug": "aids",
+    "description": "AIDS (Acquired Immunodeficiency Syndrome) is a disease caused by HIV that weakens the immune system.",
+    "symptoms": [
+      "high_fever",
+      "muscle_wasting",
+      "patches_in_throat",
+      "extra_marital_contacts"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antiretroviral drugs",
+      "Protease inhibitors",
+      "Integrase inhibitors",
+      "Entry inhibitors",
+      "Fusion inhibitors"
+    ],
+    "diet_recommendations": [
+      "Balanced Diet",
+      "Protein-rich foods",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Healthy fats"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Diabetes",
+    "slug": "diabetes",
+    "description": "Diabetes is a chronic condition that affects how the body processes blood sugar.",
+    "symptoms": [
+      "increased_appetite",
+      "polyuria",
+      "fatigue",
+      "weight_loss",
+      "restlessness",
+      "lethargy",
+      "irregular_sugar_level",
+      "blurred_and_distorted_vision"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Insulin",
+      "Metformin",
+      "Sulfonylureas",
+      "DPP-4 inhibitors",
+      "GLP-1 receptor agonists"
+    ],
+    "diet_recommendations": [
+      "Low-Glycemic Diet",
+      "Fiber-rich foods",
+      "Lean proteins",
+      "Healthy fats",
+      "Low-fat dairy"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Gastroenteritis",
+    "slug": "gastroenteritis",
+    "description": "Gastroenteritis is an inflammation of the stomach and intestines, typically caused by a virus or bacteria.",
+    "symptoms": [
+      "diarrhoea",
+      "vomiting",
+      "sunken_eyes",
+      "dehydration"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Antiemetic drugs",
+      "Antidiarrheal drugs",
+      "IV fluids",
+      "Probiotics"
+    ],
+    "diet_recommendations": [
+      "Bland Diet",
+      "Bananas",
+      "Rice",
+      "Applesauce",
+      "Toast"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Bronchial Asthma",
+    "slug": "bronchial-asthma",
+    "description": "Bronchial Asthma is a respiratory condition characterized by inflammation of the airways.",
+    "symptoms": [
+      "high_fever",
+      "breathlessness",
+      "family_history",
+      "mucoid_sputum",
+      "fatigue",
+      "cough"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Bronchodilators",
+      "Inhaled corticosteroids",
+      "Leukotriene modifiers",
+      "Mast cell stabilizers",
+      "Anticholinergics"
+    ],
+    "diet_recommendations": [
+      "Anti-Inflammatory Diet",
+      "Omega-3-rich foods",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hypertension",
+    "slug": "hypertension",
+    "description": "Hypertension, or high blood pressure, is a common cardiovascular condition.",
+    "symptoms": [
+      "loss_of_balance",
+      "lack_of_concentration",
+      "headache",
+      "chest_pain",
+      "dizziness"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antihypertensive medications",
+      "Diuretics",
+      "Beta-blockers",
+      "ACE inhibitors",
+      "Calcium channel blockers"
+    ],
+    "diet_recommendations": [
+      "DASH Diet",
+      "Low-sodium foods",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Migraine",
+    "slug": "migraine",
+    "description": "Migraine is a type of headache that often involves severe pain and sensitivity to light and sound.",
+    "symptoms": [
+      "acidity",
+      "indigestion",
+      "headache",
+      "blurred_and_distorted_vision",
+      "excessive_hunger",
+      "stiff_neck",
+      "depression",
+      "irritability"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Analgesics",
+      "Triptans",
+      "Ergotamine derivatives",
+      "Preventive medications",
+      "Biofeedback"
+    ],
+    "diet_recommendations": [
+      "Migraine Diet",
+      "Low-Tyramine Diet",
+      "Caffeine withdrawal",
+      "Hydration",
+      "Magnesium-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Cervical spondylosis",
+    "slug": "cervical-spondylosis",
+    "description": "Cervical spondylosis is a degenerative condition of the cervical spine.",
+    "symptoms": [
+      "neck_pain",
+      "dizziness",
+      "loss_of_balance",
+      "back_pain",
+      "weakness_in_limbs"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Pain relievers",
+      "Muscle relaxants",
+      "Physical therapy",
+      "Neck braces",
+      "Corticosteroids"
+    ],
+    "diet_recommendations": [
+      "Arthritis Diet",
+      "Anti-Inflammatory Diet",
+      "Omega-3-rich foods",
+      "Fruits and vegetables",
+      "Whole grains"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Paralysis (brain hemorrhage)",
+    "slug": "paralysis-brain-hemorrhage",
+    "description": "Paralysis (brain hemorrhage) refers to the loss of muscle function due to bleeding in the brain.",
+    "symptoms": [
+      "altered_sensorium",
+      "vomiting",
+      "headache",
+      "weakness_of_one_body_side"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Blood thinners",
+      "Clot-dissolving medications",
+      "Anticonvulsants",
+      "Physical therapy",
+      "Occupational therapy"
+    ],
+    "diet_recommendations": [
+      "Heart-Healthy Diet",
+      "Low-sodium foods",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Jaundice",
+    "slug": "jaundice",
+    "description": "Jaundice is a yellow discoloration of the skin and eyes, often indicating liver problems.",
+    "symptoms": [
+      "itching",
+      "vomiting",
+      "fatigue",
+      "weight_loss",
+      "high_fever",
+      "yellowish_skin",
+      "dark_urine",
+      "abdominal_pain"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant",
+      "Medications for itching",
+      "Antiviral medications"
+    ],
+    "diet_recommendations": [
+      "Liver-Healthy Diet",
+      "Low-fat Diet",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Malaria",
+    "slug": "malaria",
+    "description": "Malaria is a mosquito-borne infectious disease affecting humans and other animals.",
+    "symptoms": [
+      "muscle_pain",
+      "chills",
+      "vomiting",
+      "high_fever",
+      "sweating",
+      "headache",
+      "nausea",
+      "diarrhoea"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antimalarial drugs",
+      "Antipyretics",
+      "Antiemetic drugs",
+      "IV fluids",
+      "Blood transfusions"
+    ],
+    "diet_recommendations": [
+      "Malaria Diet",
+      "Hydration",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Oral rehydration solutions"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Chicken pox",
+    "slug": "chicken-pox",
+    "description": "Chicken pox is a highly contagious viral infection causing an itchy rash.",
+    "symptoms": [
+      "malaise",
+      "red_spots_over_body",
+      "itching",
+      "skin_rash",
+      "fatigue",
+      "lethargy",
+      "high_fever",
+      "headache"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antiviral drugs",
+      "Pain relievers",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions"
+    ],
+    "diet_recommendations": [
+      "Chicken Pox Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Dengue",
+    "slug": "dengue",
+    "description": "Dengue is a mosquito-borne viral infection causing flu-like symptoms.",
+    "symptoms": [
+      "headache",
+      "nausea",
+      "loss_of_appetite",
+      "pain_behind_the_eyes",
+      "back_pain",
+      "skin_rash",
+      "chills",
+      "joint_pain"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Antipyretics",
+      "Analgesics",
+      "IV fluids",
+      "Corticosteroids"
+    ],
+    "diet_recommendations": [
+      "Dengue Diet",
+      "Hydration",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Typhoid",
+    "slug": "typhoid",
+    "description": "Typhoid is a bacterial infection that can lead to a high fever and gastrointestinal symptoms.",
+    "symptoms": [
+      "chills",
+      "fatigue",
+      "high_fever",
+      "vomiting",
+      "nausea",
+      "constipation",
+      "abdominal_pain",
+      "diarrhoea"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Vaccination",
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Typhoid Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "hepatitis A",
+    "slug": "hepatitis-a",
+    "description": "hepatitis A is a viral liver disease.",
+    "symptoms": [
+      "mild_fever",
+      "yellowing_of_eyes",
+      "muscle_pain",
+      "joint_pain",
+      "vomiting",
+      "yellowish_skin",
+      "dark_urine",
+      "nausea"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Vaccination",
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Hepatitis A Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hepatitis B",
+    "slug": "hepatitis-b",
+    "description": "Hepatitis B is a viral infection that attacks the liver.",
+    "symptoms": [
+      "yellowing_of_eyes",
+      "malaise",
+      "receiving_blood_transfusion",
+      "receiving_unsterile_injections",
+      "itching",
+      "fatigue",
+      "lethargy",
+      "yellowish_skin"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Hepatitis B Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hepatitis C",
+    "slug": "hepatitis-c",
+    "description": "Hepatitis C is a viral infection that causes liver inflammation.",
+    "symptoms": [
+      "fatigue",
+      "yellowish_skin",
+      "nausea",
+      "loss_of_appetite",
+      "family_history",
+      "yellowing_of_eyes"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Hepatitis C Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hepatitis D",
+    "slug": "hepatitis-d",
+    "description": "Hepatitis D is a serious liver disease caused by the hepatitis D virus.",
+    "symptoms": [
+      "joint_pain",
+      "vomiting",
+      "fatigue",
+      "yellowish_skin",
+      "dark_urine",
+      "nausea",
+      "loss_of_appetite",
+      "abdominal_pain"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ],
+    "diet_recommendations": [
+      "Hepatitis D Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hepatitis E",
+    "slug": "hepatitis-e",
+    "description": "Hepatitis E is a viral infection that causes liver inflammation.",
+    "symptoms": [
+      "loss_of_appetite",
+      "abdominal_pain",
+      "yellowing_of_eyes",
+      "coma",
+      "stomach_bleeding",
+      "joint_pain",
+      "vomiting",
+      "fatigue"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Alcohol cessation",
+      "Corticosteroids",
+      "IV fluids",
+      "Liver transplant",
+      "Nutritional support"
+    ],
+    "diet_recommendations": [
+      "Hepatitis E Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Alcoholic hepatitis",
+    "slug": "alcoholic-hepatitis",
+    "description": "Alcoholic hepatitis is inflammation of the liver due to alcohol consumption.",
+    "symptoms": [
+      "fluid_overload",
+      "vomiting",
+      "yellowish_skin",
+      "abdominal_pain",
+      "swelling_of_stomach",
+      "distention_of_abdomen",
+      "history_of_alcohol_consumption"
+    ],
+    "severity_score": 7.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Isoniazid",
+      "Rifampin",
+      "Ethambutol",
+      "Pyrazinamide"
+    ],
+    "diet_recommendations": [
+      "Liver-Healthy Diet",
+      "Low-fat Diet",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Tuberculosis",
+    "slug": "tuberculosis",
+    "description": "Tuberculosis is a bacterial infection that primarily affects the lungs.",
+    "symptoms": [
+      "loss_of_appetite",
+      "mild_fever",
+      "yellowing_of_eyes",
+      "swelled_lymph_nodes",
+      "malaise",
+      "phlegm",
+      "chest_pain",
+      "blood_in_sputum"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antipyretics",
+      "Decongestants",
+      "Cough suppressants",
+      "Antihistamines",
+      "Pain relievers"
+    ],
+    "diet_recommendations": [
+      "TB Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Common Cold",
+    "slug": "common-cold",
+    "description": "Common Cold is a viral infection of the upper respiratory tract.",
+    "symptoms": [
+      "phlegm",
+      "throat_irritation",
+      "redness_of_eyes",
+      "sinus_pressure",
+      "runny_nose",
+      "congestion",
+      "chest_pain",
+      "loss_of_smell"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Antiviral drugs",
+      "Antifungal drugs",
+      "IV fluids",
+      "Oxygen therapy"
+    ],
+    "diet_recommendations": [
+      "Cold Diet",
+      "Hydration",
+      "Warm fluids",
+      "Rest",
+      "Honey and lemon tea"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Pneumonia",
+    "slug": "pneumonia",
+    "description": "Pneumonia is an inflammatory condition affecting the air sacs in the lungs.",
+    "symptoms": [
+      "chest_pain",
+      "fast_heart_rate",
+      "rusty_sputum",
+      "chills",
+      "fatigue",
+      "cough",
+      "high_fever",
+      "breathlessness"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Laxatives",
+      "Pain relievers",
+      "Warm baths",
+      "Cold compresses",
+      "High-fiber diet"
+    ],
+    "diet_recommendations": [
+      "Pneumonia Diet",
+      "High-Calorie Diet",
+      "Soft and bland foods",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Dimorphic hemmorhoids(piles)",
+    "slug": "dimorphic-hemmorhoids-piles",
+    "description": "Dimorphic hemmorhoids(piles) is a condition characterized by swollen blood vessels in the rectum.",
+    "symptoms": [
+      "constipation",
+      "pain_during_bowel_movements",
+      "pain_in_anal_region",
+      "bloody_stool",
+      "irritation_in_anus"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Nitroglycerin",
+      "Aspirin",
+      "Beta-blockers",
+      "Calcium channel blockers",
+      "Thrombolytic drugs"
+    ],
+    "diet_recommendations": [
+      "Hemorrhoids Diet",
+      "High-Fiber Diet",
+      "Hydration",
+      "Warm baths",
+      "Stool softeners"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Heart attack",
+    "slug": "heart-attack",
+    "description": "Heart attack is a sudden and severe reduction in blood flow to the heart muscle.",
+    "symptoms": [
+      "chest_pain",
+      "vomiting",
+      "breathlessness",
+      "sweating"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Compression stockings",
+      "Exercise",
+      "Elevating the legs",
+      "Sclerotherapy",
+      "Laser treatments"
+    ],
+    "diet_recommendations": [
+      "Heart-Healthy Diet",
+      "Low-sodium foods",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Lean proteins"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Varicose veins",
+    "slug": "varicose-veins",
+    "description": "Varicose veins are enlarged, twisted veins that usually appear on the legs.",
+    "symptoms": [
+      "fatigue",
+      "cramps",
+      "bruising",
+      "obesity",
+      "swollen_legs",
+      "prominent_veins_on_calf",
+      "swollen_blood_vessels"
+    ],
+    "severity_score": 7.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Levothyroxine",
+      "Antithyroid medications",
+      "Beta-blockers",
+      "Radioactive iodine",
+      "Thyroid surgery"
+    ],
+    "diet_recommendations": [
+      "Varicose Veins Diet",
+      "High-Fiber Diet",
+      "Fruits and vegetables",
+      "Whole grains",
+      "Low-sodium foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hypothyroidism",
+    "slug": "hypothyroidism",
+    "description": "Hypothyroidism is a condition where the thyroid gland doesn't produce enough thyroid hormone.",
+    "symptoms": [
+      "enlarged_thyroid",
+      "brittle_nails",
+      "swollen_extremeties",
+      "depression",
+      "irritability",
+      "abnormal_menstruation",
+      "weight_gain",
+      "cold_hands_and_feets"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antithyroid medications",
+      "Radioactive iodine",
+      "Thyroid surgery",
+      "Beta-blockers",
+      "Corticosteroids"
+    ],
+    "diet_recommendations": [
+      "Hypothyroidism Diet",
+      "Iodine-rich foods",
+      "Selenium-rich foods",
+      "Fruits and vegetables",
+      "Whole grains"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hyperthyroidism",
+    "slug": "hyperthyroidism",
+    "description": "Hyperthyroidism is a condition where the thyroid gland produces too much thyroid hormone.",
+    "symptoms": [
+      "muscle_weakness",
+      "irritability",
+      "abnormal_menstruation",
+      "fatigue",
+      "mood_swings",
+      "weight_loss",
+      "restlessness",
+      "sweating"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Glucose tablets",
+      "Candy or juice",
+      "Glucagon injection",
+      "IV dextrose",
+      "Diazoxide"
+    ],
+    "diet_recommendations": [
+      "Hyperthyroidism Diet",
+      "Low-Iodine Diet",
+      "Calcium-rich foods",
+      "Selenium-rich foods",
+      "Fruits and vegetables"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Hypoglycemia",
+    "slug": "hypoglycemia",
+    "description": "Hypoglycemia is a condition characterized by abnormally low blood sugar levels.",
+    "symptoms": [
+      "excessive_hunger",
+      "slurred_speech",
+      "irritability",
+      "palpitations",
+      "vomiting",
+      "fatigue",
+      "anxiety",
+      "sweating"
+    ],
+    "severity_score": 8.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Pain relievers",
+      "Exercise",
+      "Hot and cold packs",
+      "Joint protection",
+      "Physical therapy"
+    ],
+    "diet_recommendations": [
+      "Hypoglycemia Diet",
+      "Complex carbohydrates",
+      "Protein-rich snacks",
+      "Fiber-rich foods",
+      "Healthy fats"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Osteoarthristis",
+    "slug": "osteoarthristis",
+    "description": "Osteoarthristis is a degenerative joint disease that affects the cartilage in joints.",
+    "symptoms": [
+      "joint_pain",
+      "neck_pain",
+      "knee_pain",
+      "hip_joint_pain",
+      "swelling_joints",
+      "painful_walking"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "NSAIDs",
+      "Disease-modifying antirheumatic drugs (DMARDs)",
+      "Biologics",
+      "Corticosteroids",
+      "Joint replacement surgery"
+    ],
+    "diet_recommendations": [
+      "Arthritis Diet",
+      "Anti-Inflammatory Diet",
+      "Omega-3-rich foods",
+      "Fruits and vegetables",
+      "Whole grains"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Arthritis",
+    "slug": "arthritis",
+    "description": "Arthritis is inflammation of one or more joints, causing pain and stiffness.",
+    "symptoms": [
+      "muscle_weakness",
+      "stiff_neck",
+      "swelling_joints",
+      "movement_stiffness",
+      "painful_walking"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Vestibular rehabilitation",
+      "Canalith repositioning",
+      "Medications for nausea",
+      "Surgery",
+      "Home exercises"
+    ],
+    "diet_recommendations": [
+      "Arthritis Diet",
+      "Anti-Inflammatory Diet",
+      "Omega-3-rich foods",
+      "Fruits and vegetables",
+      "Whole grains"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "(vertigo) Paroymsal  Positional Vertigo",
+    "slug": "vertigo-paroymsal-positional-vertigo",
+    "description": "(vertigo) Paroymsal  Positional Vertigo — Description pending.",
+    "symptoms": [
+      "vomiting",
+      "headache",
+      "nausea",
+      "loss_of_balance",
+      "unsteadiness",
+      "spinning_movements"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [],
+    "diet_recommendations": [],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Acne",
+    "slug": "acne",
+    "description": "Acne is a skin condition that occurs when hair follicles become clogged with oil and dead skin cells.",
+    "symptoms": [
+      "skin_rash",
+      "pus_filled_pimples",
+      "blackheads",
+      "scurring"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Pain relievers",
+      "Antihistamines",
+      "Corticosteroids",
+      "Topical treatments"
+    ],
+    "diet_recommendations": [
+      "Acne Diet",
+      "Low-Glycemic Diet",
+      "Hydration",
+      "Fruits and vegetables",
+      "Probiotics"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Urinary tract infection",
+    "slug": "urinary-tract-infection",
+    "description": "Urinary tract infection is an infection in any part of the urinary system.",
+    "symptoms": [
+      "bladder_discomfort",
+      "continuous_feel_of_urine",
+      "burning_micturition",
+      "foul_smell_of urine"
+    ],
+    "severity_score": 4.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Antibiotics",
+      "Urinary analgesics",
+      "Phenazopyridine",
+      "Antispasmodics",
+      "Probiotics"
+    ],
+    "diet_recommendations": [
+      "UTI Diet",
+      "Hydration",
+      "Cranberry juice",
+      "Probiotics",
+      "Vitamin C-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Psoriasis",
+    "slug": "psoriasis",
+    "description": "Psoriasis is a chronic skin condition characterized by red, itchy, and scaly patches.",
+    "symptoms": [
+      "skin_rash",
+      "joint_pain",
+      "skin_peeling",
+      "silver_like_dusting",
+      "small_dents_in_nails",
+      "inflammatory_nails"
+    ],
+    "severity_score": 6.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Topical treatments",
+      "Phototherapy",
+      "Systemic medications",
+      "Biologics",
+      "Coal tar"
+    ],
+    "diet_recommendations": [
+      "Psoriasis Diet",
+      "Anti-Inflammatory Diet",
+      "Omega-3-rich foods",
+      "Fruits and vegetables",
+      "Whole grains"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Impetigo",
+    "slug": "impetigo",
+    "description": "Impetigo is a highly contagious skin infection causing red sores that can break open.",
+    "symptoms": [
+      "skin_rash",
+      "blister",
+      "red_sore_around_nose",
+      "yellow_crust_ooze",
+      "high_fever"
+    ],
+    "severity_score": 5.0,
+    "severity": "moderate",
+    "precautions": [],
+    "medications": [
+      "Topical antibiotics",
+      "Oral antibiotics",
+      "Antiseptics",
+      "Ointments",
+      "Warm compresses"
+    ],
+    "diet_recommendations": [
+      "Impetigo Diet",
+      "Antibiotic treatment",
+      "Fruits and vegetables",
+      "Hydration",
+      "Protein-rich foods"
+    ],
+    "workout_recommendations": [],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 1",
+    "slug": "placeholder-disease-1",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 2",
+    "slug": "placeholder-disease-2",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 3",
+    "slug": "placeholder-disease-3",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 4",
+    "slug": "placeholder-disease-4",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 5",
+    "slug": "placeholder-disease-5",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 6",
+    "slug": "placeholder-disease-6",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 7",
+    "slug": "placeholder-disease-7",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 8",
+    "slug": "placeholder-disease-8",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 9",
+    "slug": "placeholder-disease-9",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 10",
+    "slug": "placeholder-disease-10",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 11",
+    "slug": "placeholder-disease-11",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 12",
+    "slug": "placeholder-disease-12",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 13",
+    "slug": "placeholder-disease-13",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 14",
+    "slug": "placeholder-disease-14",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 15",
+    "slug": "placeholder-disease-15",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 16",
+    "slug": "placeholder-disease-16",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 17",
+    "slug": "placeholder-disease-17",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 18",
+    "slug": "placeholder-disease-18",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 19",
+    "slug": "placeholder-disease-19",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 20",
+    "slug": "placeholder-disease-20",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 21",
+    "slug": "placeholder-disease-21",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 22",
+    "slug": "placeholder-disease-22",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 23",
+    "slug": "placeholder-disease-23",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 24",
+    "slug": "placeholder-disease-24",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 25",
+    "slug": "placeholder-disease-25",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 26",
+    "slug": "placeholder-disease-26",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 27",
+    "slug": "placeholder-disease-27",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 28",
+    "slug": "placeholder-disease-28",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 29",
+    "slug": "placeholder-disease-29",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 30",
+    "slug": "placeholder-disease-30",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 31",
+    "slug": "placeholder-disease-31",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 32",
+    "slug": "placeholder-disease-32",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 33",
+    "slug": "placeholder-disease-33",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 34",
+    "slug": "placeholder-disease-34",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 35",
+    "slug": "placeholder-disease-35",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 36",
+    "slug": "placeholder-disease-36",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 37",
+    "slug": "placeholder-disease-37",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 38",
+    "slug": "placeholder-disease-38",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 39",
+    "slug": "placeholder-disease-39",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 40",
+    "slug": "placeholder-disease-40",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 41",
+    "slug": "placeholder-disease-41",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 42",
+    "slug": "placeholder-disease-42",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 43",
+    "slug": "placeholder-disease-43",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 44",
+    "slug": "placeholder-disease-44",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 45",
+    "slug": "placeholder-disease-45",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 46",
+    "slug": "placeholder-disease-46",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 47",
+    "slug": "placeholder-disease-47",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 48",
+    "slug": "placeholder-disease-48",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 49",
+    "slug": "placeholder-disease-49",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 50",
+    "slug": "placeholder-disease-50",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 51",
+    "slug": "placeholder-disease-51",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 52",
+    "slug": "placeholder-disease-52",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 53",
+    "slug": "placeholder-disease-53",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 54",
+    "slug": "placeholder-disease-54",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 55",
+    "slug": "placeholder-disease-55",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 56",
+    "slug": "placeholder-disease-56",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 57",
+    "slug": "placeholder-disease-57",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 58",
+    "slug": "placeholder-disease-58",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 59",
+    "slug": "placeholder-disease-59",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 60",
+    "slug": "placeholder-disease-60",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 61",
+    "slug": "placeholder-disease-61",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 62",
+    "slug": "placeholder-disease-62",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 63",
+    "slug": "placeholder-disease-63",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 64",
+    "slug": "placeholder-disease-64",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 65",
+    "slug": "placeholder-disease-65",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 66",
+    "slug": "placeholder-disease-66",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 67",
+    "slug": "placeholder-disease-67",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 68",
+    "slug": "placeholder-disease-68",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 69",
+    "slug": "placeholder-disease-69",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 70",
+    "slug": "placeholder-disease-70",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 71",
+    "slug": "placeholder-disease-71",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 72",
+    "slug": "placeholder-disease-72",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 73",
+    "slug": "placeholder-disease-73",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 74",
+    "slug": "placeholder-disease-74",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 75",
+    "slug": "placeholder-disease-75",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 76",
+    "slug": "placeholder-disease-76",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 77",
+    "slug": "placeholder-disease-77",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 78",
+    "slug": "placeholder-disease-78",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 79",
+    "slug": "placeholder-disease-79",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 80",
+    "slug": "placeholder-disease-80",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 81",
+    "slug": "placeholder-disease-81",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 82",
+    "slug": "placeholder-disease-82",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 83",
+    "slug": "placeholder-disease-83",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 84",
+    "slug": "placeholder-disease-84",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 85",
+    "slug": "placeholder-disease-85",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 86",
+    "slug": "placeholder-disease-86",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 87",
+    "slug": "placeholder-disease-87",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 88",
+    "slug": "placeholder-disease-88",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 89",
+    "slug": "placeholder-disease-89",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 90",
+    "slug": "placeholder-disease-90",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 91",
+    "slug": "placeholder-disease-91",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 92",
+    "slug": "placeholder-disease-92",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 93",
+    "slug": "placeholder-disease-93",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 94",
+    "slug": "placeholder-disease-94",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 95",
+    "slug": "placeholder-disease-95",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 96",
+    "slug": "placeholder-disease-96",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 97",
+    "slug": "placeholder-disease-97",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 98",
+    "slug": "placeholder-disease-98",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 99",
+    "slug": "placeholder-disease-99",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 100",
+    "slug": "placeholder-disease-100",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 101",
+    "slug": "placeholder-disease-101",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 102",
+    "slug": "placeholder-disease-102",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 103",
+    "slug": "placeholder-disease-103",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 104",
+    "slug": "placeholder-disease-104",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 105",
+    "slug": "placeholder-disease-105",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 106",
+    "slug": "placeholder-disease-106",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 107",
+    "slug": "placeholder-disease-107",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 108",
+    "slug": "placeholder-disease-108",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 109",
+    "slug": "placeholder-disease-109",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 110",
+    "slug": "placeholder-disease-110",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 111",
+    "slug": "placeholder-disease-111",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 112",
+    "slug": "placeholder-disease-112",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 113",
+    "slug": "placeholder-disease-113",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 114",
+    "slug": "placeholder-disease-114",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 115",
+    "slug": "placeholder-disease-115",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 116",
+    "slug": "placeholder-disease-116",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 117",
+    "slug": "placeholder-disease-117",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 118",
+    "slug": "placeholder-disease-118",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 119",
+    "slug": "placeholder-disease-119",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 120",
+    "slug": "placeholder-disease-120",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 121",
+    "slug": "placeholder-disease-121",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 122",
+    "slug": "placeholder-disease-122",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 123",
+    "slug": "placeholder-disease-123",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 124",
+    "slug": "placeholder-disease-124",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 125",
+    "slug": "placeholder-disease-125",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 126",
+    "slug": "placeholder-disease-126",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 127",
+    "slug": "placeholder-disease-127",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 128",
+    "slug": "placeholder-disease-128",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 129",
+    "slug": "placeholder-disease-129",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 130",
+    "slug": "placeholder-disease-130",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 131",
+    "slug": "placeholder-disease-131",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 132",
+    "slug": "placeholder-disease-132",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 133",
+    "slug": "placeholder-disease-133",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 134",
+    "slug": "placeholder-disease-134",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 135",
+    "slug": "placeholder-disease-135",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 136",
+    "slug": "placeholder-disease-136",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 137",
+    "slug": "placeholder-disease-137",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 138",
+    "slug": "placeholder-disease-138",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 139",
+    "slug": "placeholder-disease-139",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 140",
+    "slug": "placeholder-disease-140",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 141",
+    "slug": "placeholder-disease-141",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 142",
+    "slug": "placeholder-disease-142",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 143",
+    "slug": "placeholder-disease-143",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 144",
+    "slug": "placeholder-disease-144",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 145",
+    "slug": "placeholder-disease-145",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 146",
+    "slug": "placeholder-disease-146",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 147",
+    "slug": "placeholder-disease-147",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 148",
+    "slug": "placeholder-disease-148",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 149",
+    "slug": "placeholder-disease-149",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 150",
+    "slug": "placeholder-disease-150",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 151",
+    "slug": "placeholder-disease-151",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 152",
+    "slug": "placeholder-disease-152",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 153",
+    "slug": "placeholder-disease-153",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 154",
+    "slug": "placeholder-disease-154",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 155",
+    "slug": "placeholder-disease-155",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 156",
+    "slug": "placeholder-disease-156",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 157",
+    "slug": "placeholder-disease-157",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 158",
+    "slug": "placeholder-disease-158",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  },
+  {
+    "name": "Placeholder Disease 159",
+    "slug": "placeholder-disease-159",
+    "description": "Placeholder description for review.",
+    "symptoms": [],
+    "severity_score": 5.0,
+    "severity": "mild",
+    "precautions": [
+      "consult doctor"
+    ],
+    "medications": [
+      "medication"
+    ],
+    "diet_recommendations": [
+      "balanced diet"
+    ],
+    "workout_recommendations": [
+      "light exercise"
+    ],
+    "specialist_type": "General Physician",
+    "body_system": "general",
+    "is_active": true
+  }
+]

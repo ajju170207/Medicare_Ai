@@ -1,3 +1,4 @@
+print("--- ML STARTING ---")
 from flask import Flask, request, jsonify
 import pandas as pd
 import numpy as np
@@ -142,4 +143,5 @@ def health():
     return jsonify({"status": "ok", "model_loaded": rf_model is not None})
 
 if __name__ == '__main__':
-    app.run(port=5002, debug=True)
+    # Disable debug mode to avoid 'Bad file descriptor' issues in some environments
+    app.run(port=5002, debug=False, host='0.0.0.0')

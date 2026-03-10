@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { supabase } from '../config/supabase';
+import Disease from '../models/Disease';
 
 // @desc    Search / list diseases
 // @route   GET /api/v1/diseases
@@ -8,28 +8,35 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
     try {
         const { search = '', severity, specialist, page = 1, limit = 12 } = req.query;
 
-        const { data, error } = await supabase.rpc('search_diseases', {
-            search_query: String(search),
-            filter_severity: severity || null,
-            filter_specialist: specialist || null,
-            page_num: Number(page),
-            page_size: Number(limit),
-        });
-
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
+        let query: any = { is_active: true };
+        
+        if (search) {
+            query.$text = { $search: String(search) };
+        }
+        if (severity) {
+            query.severity = severity;
+        }
+        if (specialist) {
+            query.specialist_type = specialist;
         }
 
-        const total = data?.[0]?.total_count || 0;
+        const pageNum = Number(page);
+        const limitNum = Number(limit);
+        const skip = (pageNum - 1) * limitNum;
+
+        const data = await Disease.find(query)
+            .skip(skip)
+            .limit(limitNum);
+            
+        const total = await Disease.countDocuments(query);
 
         res.status(200).json({
             success: true,
-            count: data?.length || 0,
-            total: Number(total),
-            page: Number(page),
-            pages: Math.ceil(Number(total) / Number(limit)),
-            data: data || [],
+            count: data.length,
+            total,
+            page: pageNum,
+            pages: Math.ceil(total / limitNum),
+            data,
         });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
@@ -43,14 +50,9 @@ export const getDiseaseBySlug = async (req: Request, res: Response): Promise<voi
     try {
         const { slug } = req.params;
 
-        const { data, error } = await supabase
-            .from('disease_library')
-            .select('*')
-            .eq('slug', slug)
-            .eq('is_active', true)
-            .single();
+        const data = await Disease.findOne({ slug, is_active: true });
 
-        if (error || !data) {
+        if (!data) {
             res.status(404).json({ success: false, message: 'Disease not found' });
             return;
         }

@@ -1,21 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import { supabase } from '../config/supabase';
-
-export interface AuthUser {
-    id: string;
-    email?: string;
-    phone?: string;
-    full_name?: string;
-    preferred_language?: string;
-    avatar_url?: string;
-    age?: number;
-    gender?: string;
-    state?: string;
-    district?: string;
-}
+import jwt from 'jsonwebtoken';
+import User, { IUser } from '../models/User';
 
 export interface AuthRequest extends Request {
-    user?: AuthUser;
+    user?: IUser;
 }
 
 export const protect = async (
@@ -38,28 +26,18 @@ export const protect = async (
     }
 
     try {
-        // Verify the Supabase JWT
-        const { data: { user }, error } = await supabase.auth.getUser(token);
+        // Verify token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string };
 
-        if (error || !user) {
-            res.status(401).json({ success: false, message: 'Invalid or expired token' });
+        // Load full profile from MongoDB
+        const user = await User.findById(decoded.id).select('-password');
+
+        if (!user) {
+            res.status(401).json({ success: false, message: 'User not found' });
             return;
         }
 
-        // Load full profile from public.users
-        const { data: profile } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', user.id)
-            .single();
-
-        req.user = {
-            id: user.id,
-            email: user.email,
-            phone: user.phone,
-            ...profile,
-        };
-
+        req.user = user;
         next();
     } catch (err) {
         res.status(401).json({ success: false, message: 'Not authorized to access this route' });

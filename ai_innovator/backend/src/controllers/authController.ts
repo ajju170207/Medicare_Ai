@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
-import { supabase } from '../config/supabase';
+import bcrypt from 'bcryptjs';
+import User from '../models/User';
+import { generateToken } from '../utils/tokenGenerator';
 import { AuthRequest } from '../middleware/auth.middleware';
 
 // @desc    Register user
@@ -14,54 +16,43 @@ export const register = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        // 1. Create auth user
-        const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        // Check if user exists
+        const userExists = await User.findOne({ email });
+
+        if (userExists) {
+            res.status(400).json({ success: false, message: 'User already exists' });
+            return;
+        }
+
+        // Hash password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Create user
+        const user = await User.create({
             email,
-            password,
-            email_confirm: true,
+            password: hashedPassword,
+            full_name,
+            phone: phone || null,
+            preferred_language: 'en',
         });
 
-        if (authError || !authData.user) {
-            res.status(400).json({ success: false, message: authError?.message || 'Registration failed' });
-            return;
+        if (user) {
+            res.status(201).json({
+                success: true,
+                message: 'Registration successful',
+                token: generateToken(user.id),
+                data: {
+                    id: user.id,
+                    email: user.email,
+                    full_name: user.full_name,
+                    phone: user.phone,
+                    preferred_language: user.preferred_language,
+                },
+            });
+        } else {
+            res.status(400).json({ success: false, message: 'Invalid user data' });
         }
-
-        // 2. Insert profile into public.users
-        const { data: profile, error: profileError } = await supabase
-            .from('users')
-            .insert({
-                id: authData.user.id,
-                full_name,
-                email,
-                phone: phone || null,
-                email_verified: true,
-            })
-            .select()
-            .single();
-
-        if (profileError) {
-            // Cleanup auth user if profile creation fails
-            await supabase.auth.admin.deleteUser(authData.user.id);
-            res.status(400).json({ success: false, message: profileError.message });
-            return;
-        }
-
-        // 3. Sign in to get session token
-        const { data: session, error: signInError } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        });
-
-        if (signInError || !session.session) {
-            res.status(201).json({ success: true, message: 'Account created. Please log in.', data: profile });
-            return;
-        }
-
-        res.status(201).json({
-            success: true,
-            token: session.session.access_token,
-            data: profile,
-        });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -79,31 +70,34 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        // Find user by email
+        const user = await User.findOne({ email });
 
-        if (error || !data.session) {
-            res.status(401).json({ success: false, message: error?.message || 'Invalid credentials' });
-            return;
+        if (user && user.password && (await bcrypt.compare(password, user.password))) {
+            // Update last_login_at
+            user.last_login_at = new Date();
+            await user.save();
+
+            res.status(200).json({
+                success: true,
+                token: generateToken(user.id),
+                data: {
+                    id: user.id,
+                    email: user.email,
+                    full_name: user.full_name,
+                    phone: user.phone,
+                    preferred_language: user.preferred_language,
+                    avatar_url: user.avatar_url,
+                    age: user.age,
+                    gender: user.gender,
+                    state: user.state,
+                    district: user.district,
+                    last_login_at: user.last_login_at,
+                },
+            });
+        } else {
+            res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
-
-        // Fetch user profile
-        const { data: profile } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', data.user.id)
-            .single();
-
-        // Update last_login_at
-        await supabase
-            .from('users')
-            .update({ last_login_at: new Date().toISOString() })
-            .eq('id', data.user.id);
-
-        res.status(200).json({
-            success: true,
-            token: data.session.access_token,
-            data: profile,
-        });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -114,18 +108,14 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 // @access  Private
 export const getMe = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { data: profile, error } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', req.user!.id)
-            .single();
+        const user = await User.findById(req.user!.id).select('-password');
 
-        if (error) {
+        if (!user) {
             res.status(404).json({ success: false, message: 'User not found' });
             return;
         }
 
-        res.status(200).json({ success: true, data: profile });
+        res.status(200).json({ success: true, data: user });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -138,19 +128,18 @@ export const updateProfile = async (req: AuthRequest, res: Response): Promise<vo
     try {
         const { full_name, age, gender, state, district, preferred_language, avatar_url } = req.body;
 
-        const { data, error } = await supabase
-            .from('users')
-            .update({ full_name, age, gender, state, district, preferred_language, avatar_url })
-            .eq('id', req.user!.id)
-            .select()
-            .single();
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user!.id,
+            { full_name, age, gender, state, district, preferred_language, avatar_url },
+            { new: true, runValidators: true }
+        ).select('-password');
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
+        if (!updatedUser) {
+            res.status(400).json({ success: false, message: 'Error updating profile' });
             return;
         }
 
-        res.status(200).json({ success: true, data });
+        res.status(200).json({ success: true, data: updatedUser });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }

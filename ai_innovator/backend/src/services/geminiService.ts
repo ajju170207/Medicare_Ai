@@ -29,7 +29,7 @@ export const analyzeSymptoms = async (
     `;
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
         const result = await model.generateContent({
             contents: [
@@ -52,6 +52,7 @@ export const analyzeSymptoms = async (
         return {
             primaryCondition: "Consult a Doctor",
             conditions: [],
+            specialist: "General Physician",
             urgency: "urgent",
             recommendations: ["Seek medical attention immediately if symptoms persist."],
             disclaimer: "AI analysis failed. Please consult a healthcare professional."
@@ -61,7 +62,7 @@ export const analyzeSymptoms = async (
 
 export const chatWithAI = async (message: string, history: any[] = []) => {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
         const chat = model.startChat({
             history: history.map(msg => ({

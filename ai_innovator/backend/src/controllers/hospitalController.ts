@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { supabase } from '../config/supabase';
+import EmergencyContact from '../models/EmergencyContact';
 
 // @desc    Get emergency contacts / hospitals by state/type
 // @route   GET /api/v1/hospitals
@@ -7,33 +7,30 @@ import { supabase } from '../config/supabase';
 export const getHospitals = async (req: Request, res: Response): Promise<void> => {
     try {
         const { state, type, district, limit = 20, page = 1 } = req.query;
-        const offset = (Number(page) - 1) * Number(limit);
+        const pageNum = Number(page);
+        const limitNum = Number(limit);
+        const skip = (pageNum - 1) * limitNum;
 
-        let query = supabase
-            .from('emergency_contacts')
-            .select('*', { count: 'exact' })
-            .eq('is_active', true)
-            .order('available_24h', { ascending: false })
-            .range(offset, offset + Number(limit) - 1);
+        let query: any = { is_active: true };
 
         if (state && state !== 'national') {
-            query = query.or(`state.eq.${state},state.eq.national`);
+            query.$or = [{ state }, { state: 'national' }];
         }
         if (type) {
-            query = query.eq('type', type as string);
+            query.type = type;
         }
         if (district) {
-            query = query.ilike('district', `%${district}%`);
+            query.district = { $regex: district as string, $options: 'i' };
         }
 
-        const { data, error, count } = await query;
+        const data = await EmergencyContact.find(query)
+            .sort({ available_24h: -1 })
+            .skip(skip)
+            .limit(limitNum);
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
-        }
+        const count = await EmergencyContact.countDocuments(query);
 
-        res.status(200).json({ success: true, count, data: data || [] });
+        res.status(200).json({ success: true, count, data });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -51,19 +48,31 @@ export const getNearbyHospitals = async (req: Request, res: Response): Promise<v
             return;
         }
 
-        const { data, error } = await supabase.rpc('get_nearby_emergency', {
-            user_lat: Number(lat),
-            user_lng: Number(lng),
-            radius_km: Number(radius),
-            contact_type: type || null,
-        });
+        const typeArray = type ? (type as string).split(',') : ['hospital'];
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
-        }
+        const data = await EmergencyContact.aggregate([
+            {
+                $geoNear: {
+                    near: {
+                        type: "Point",
+                        coordinates: [Number(lng), Number(lat)] // [longitude, latitude]
+                    },
+                    distanceField: "distance_meters",
+                    maxDistance: Number(radius) * 1000,
+                    query: { is_active: true, type: { $in: typeArray } },
+                    spherical: true
+                }
+            }
+        ]);
 
-        res.status(200).json({ success: true, count: data?.length || 0, data: data || [] });
+        // Process data for frontend (distance in km, id mapped)
+        const formattedData = data.map(item => ({
+            ...item,
+            id: item._id, // Map for compatibility if needed
+            distance_km: item.distance_meters / 1000
+        }));
+
+        res.status(200).json({ success: true, count: formattedData.length, data: formattedData });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }
@@ -74,19 +83,9 @@ export const getNearbyHospitals = async (req: Request, res: Response): Promise<v
 // @access  Public
 export const getHelplines = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { data, error } = await supabase
-            .from('emergency_contacts')
-            .select('*')
-            .eq('state', 'national')
-            .eq('is_active', true)
-            .order('type');
+        const data = await EmergencyContact.find({ state: 'national', is_active: true }).sort('type');
 
-        if (error) {
-            res.status(400).json({ success: false, message: error.message });
-            return;
-        }
-
-        res.status(200).json({ success: true, count: data?.length || 0, data: data || [] });
+        res.status(200).json({ success: true, count: data.length, data });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
     }

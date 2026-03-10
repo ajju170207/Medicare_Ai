@@ -1,1 +1,0 @@
-export { ImageCheckerPage } from './stubs'

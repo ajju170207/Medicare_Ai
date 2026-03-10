@@ -12,9 +12,14 @@ import symptomRoutes from './routes/symptom.routes';
 import diseaseRoutes from './routes/disease.routes';
 import hospitalRoutes from './routes/hospital.routes';
 import uploadRoutes from './routes/upload.routes';
+import chatRoutes from './routes/diseaseChat.routes';
+import connectDB from './config/db';
 
 // Load env vars
 dotenv.config();
+
+// Connect to Database
+connectDB();
 
 const app = express();
 
@@ -41,6 +46,7 @@ app.use('/api/v1/symptoms', symptomRoutes);
 app.use('/api/v1/diseases', diseaseRoutes);
 app.use('/api/v1/hospitals', hospitalRoutes);
 app.use('/api/v1/upload', protect, uploadRoutes);
+app.use('/api/v1/chat', protect, chatRoutes);
 
 // Health check
 app.get('/health', (_req, res) => {
@@ -54,7 +60,6 @@ const PORT = process.env.PORT || 5001;
 
 const server = app.listen(PORT, () => {
     console.log(`✅ MedicareAI Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-    console.log(`📡 Supabase: ${process.env.SUPABASE_URL}`);
 });
 
 // Handle unhandled promise rejections

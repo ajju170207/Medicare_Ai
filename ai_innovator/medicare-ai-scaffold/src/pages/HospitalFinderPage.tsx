@@ -1,1 +1,0 @@
-export { HospitalFinderPage } from './stubs'

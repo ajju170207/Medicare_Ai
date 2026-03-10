@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-import { supabase } from '../lib/supabase';
-import type { Session } from '@supabase/supabase-js';
+import api from '../services/api';
 
 export interface UserProfile {
     id: string;
@@ -19,140 +18,110 @@ export interface UserProfile {
 
 interface AuthState {
     user: UserProfile | null;
-    session: Session | null;
+    token: string | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     register: (email: string, password: string, fullName: string, phone?: string) => Promise<{ error?: string }>;
     login: (email: string, password: string) => Promise<{ error?: string }>;
-    logout: () => Promise<void>;
+    logout: () => void;
     loadSession: () => Promise<void>;
     updateUser: (profile: Partial<UserProfile>) => void;
 }
 
-export const useAuthStore = create<AuthState>((set, get) => ({
-    user: null,
-    session: null,
-    isAuthenticated: false,
-    isLoading: true,
+export const useAuthStore = create<AuthState>((set, get) => {
+    // Listen for global unauthorized events to automatically logout
+    if (typeof window !== 'undefined') {
+        window.addEventListener('auth:unauthorized', () => {
+            get().logout();
+        });
+    }
 
-    loadSession: async () => {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (session) {
-            const { data: profile } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', session.user.id)
-                .single();
+    return {
+        user: null,
+        token: localStorage.getItem('token'),
+        isAuthenticated: !!localStorage.getItem('token'),
+        isLoading: true,
 
-            if (profile) {
-                const names = (profile.full_name || '').split(' ');
-                profile.firstName = names[0] || '';
-                profile.lastName = names.slice(1).join(' ') || '';
+        loadSession: async () => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                set({ token: null, user: null, isAuthenticated: false, isLoading: false });
+                return;
             }
 
-            set({
-                session,
-                user: profile,
-                isAuthenticated: true,
-                isLoading: false,
-            });
-        } else {
-            set({ session: null, user: null, isAuthenticated: false, isLoading: false });
-        }
-
-        // Listen for auth state changes
-        supabase.auth.onAuthStateChange(async (_event, session) => {
-            if (session) {
-                const { data: profile } = await supabase
-                    .from('users')
-                    .select('*')
-                    .eq('id', session.user.id)
-                    .single();
-
+            try {
+                const { data } = await api.get('/auth/me');
+                const profile = data.data;
                 if (profile) {
                     const names = (profile.full_name || '').split(' ');
                     profile.firstName = names[0] || '';
                     profile.lastName = names.slice(1).join(' ') || '';
                 }
-
-                set({ session, user: profile, isAuthenticated: true });
-            } else {
-                set({ session: null, user: null, isAuthenticated: false });
+                set({ user: profile, isAuthenticated: true, isLoading: false });
+            } catch (error) {
+                localStorage.removeItem('token');
+                set({ token: null, user: null, isAuthenticated: false, isLoading: false });
             }
-        });
-    },
+        },
 
-    register: async (email, password, fullName, phone) => {
-        try {
-            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api/v1';
-            const res = await fetch(`${apiUrl}/auth/register`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, full_name: fullName, phone }),
-            });
-            const data = await res.json();
-            if (!data.success) return { error: data.message };
-
-            // After register, sign in to get session
-            const { data: sessionData, error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) return { error: error.message };
-
-            const { data: profile } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', sessionData.session!.user.id)
-                .single();
-
-            if (profile) {
-                const names = (profile.full_name || '').split(' ');
-                profile.firstName = names[0] || '';
-                profile.lastName = names.slice(1).join(' ') || '';
+        register: async (email, password, fullName, phone) => {
+            try {
+                const { data } = await api.post('/auth/register', {
+                    email,
+                    password,
+                    full_name: fullName,
+                    phone
+                });
+                
+                if (data.success && data.token) {
+                    localStorage.setItem('token', data.token);
+                    const profile = data.data;
+                    const names = (profile.full_name || '').split(' ');
+                    profile.firstName = names[0] || '';
+                    profile.lastName = names.slice(1).join(' ') || '';
+                    
+                    set({ token: data.token, user: profile, isAuthenticated: true });
+                    return {};
+                }
+                return { error: 'Registration failed' };
+            } catch (err: any) {
+                return { error: err.response?.data?.message || err.message };
             }
+        },
 
-            set({ session: sessionData.session, user: profile, isAuthenticated: true });
-            return {};
-        } catch (err: any) {
-            return { error: err.message };
-        }
-    },
-
-    login: async (email, password) => {
-        try {
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            if (error) return { error: error.message };
-
-            const { data: profile } = await supabase
-                .from('users')
-                .select('*')
-                .eq('id', data.session!.user.id)
-                .single();
-
-            if (profile) {
-                const names = (profile.full_name || '').split(' ');
-                profile.firstName = names[0] || '';
-                profile.lastName = names.slice(1).join(' ') || '';
+        login: async (email, password) => {
+            try {
+                const { data } = await api.post('/auth/login', { email, password });
+                
+                if (data.success && data.token) {
+                    localStorage.setItem('token', data.token);
+                    const profile = data.data;
+                    const names = (profile.full_name || '').split(' ');
+                    profile.firstName = names[0] || '';
+                    profile.lastName = names.slice(1).join(' ') || '';
+                    
+                    set({ token: data.token, user: profile, isAuthenticated: true });
+                    return {};
+                }
+                return { error: 'Login failed' };
+            } catch (err: any) {
+                return { error: err.response?.data?.message || err.message };
             }
+        },
 
-            set({ session: data.session, user: profile, isAuthenticated: true });
-            return {};
-        } catch (err: any) {
-            return { error: err.message };
-        }
-    },
+        logout: () => {
+            localStorage.removeItem('token');
+            set({ token: null, user: null, isAuthenticated: false });
+        },
 
-    logout: async () => {
-        await supabase.auth.signOut();
-        set({ session: null, user: null, isAuthenticated: false });
-    },
-
-    updateUser: (profile) => {
-        const current = get().user;
-        if (current) set({ user: { ...current, ...profile } });
-    },
-}));
+        updateUser: (profile) => {
+            const current = get().user;
+            if (current) set({ user: { ...current, ...profile } });
+        },
+    };
+});
 
 // Helper to get the current access token for backend API calls
 export const getAccessToken = async (): Promise<string | null> => {
-    const { data: { session } } = await supabase.auth.getSession();
-    return session?.access_token ?? null;
+    return localStorage.getItem('token');
 };

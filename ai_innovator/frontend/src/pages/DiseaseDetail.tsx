@@ -17,8 +17,21 @@ const DiseaseDetail: React.FC = () => {
     useEffect(() => {
         const fetchDisease = async () => {
             try {
-                const response = await api.get(`/diseases/${id}`);
-                setDisease(response.data.data);
+                // In dev, use local JSON to ensure complete data (precautions, diet, etc.)
+                if (import.meta.env && import.meta.env.DEV) {
+                    const mod = await import('../data/expandedDiseaseLibrary.json');
+                    const local = (mod && (mod.default || mod)) as any[];
+                    const found = local.find(d => d.slug === id);
+                    if (found) {
+                        setDisease(found);
+                    } else {
+                        message.error('Disease not found');
+                        navigate('/disease-library');
+                    }
+                } else {
+                    const response = await api.get(`/diseases/${id}`);
+                    setDisease(response.data.data);
+                }
             } catch (error: any) {
                 message.error('Failed to fetch disease details');
                 navigate('/disease-library');

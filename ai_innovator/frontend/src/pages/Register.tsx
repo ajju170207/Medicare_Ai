@@ -77,7 +77,7 @@ const Register: React.FC = () => {
                         name="phone"
                         label="Phone (Optional)"
                         rules={[
-                            { pattern: /^[6-9][0-9]{9}$/, message: 'Enter a valid 10-digit Indian mobile number' }
+                            { pattern: /^[0-9+]{10,15}$/, message: 'Enter a valid 10-15 digit phone number' }
                         ]}
                     >
                         <Input prefix={<PhoneOutlined className="text-gray-400" />} placeholder="9876543210" size="large" />

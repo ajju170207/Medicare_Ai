@@ -1,41 +1,34 @@
-# 🛠️ Database Troubleshooting Guide
+# 🛠️ MedicareAI Troubleshooting Guide
 
-It looks like your MediCare AI platform is unable to connect to the database. This is usually because **MongoDB** isn't running on your computer.
+It looks like your MedicareAI platform is facing issues. Follow these steps to resolve common problems.
 
-Follow these steps to fix the issue:
+## 🗄️ Database (Supabase)
 
-## 🍏 For MacOS (using Homebrew)
+This app uses **Supabase** (not MongoDB). 
+1. Ensure your `backend/.env` has valid `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`.
+2. Check your internet connection as Supabase is a cloud service.
 
-1. **Check if MongoDB is installed:**
+## 🐍 ML Microservice (Python)
+
+If the ML service (Port 5002) is not responding:
+1. Ensure you have **Python 3.10 to 3.13** installed. (Avoid 3.14+ for compatibility with some older ML libraries).
+2. Recreate the virtual environment if dependencies are broken:
    ```bash
-   brew list | grep mongodb
+   cd ml_service
+   rm -rf venv
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
    ```
+3. Run it manually to see errors: `python app.py`
 
-2. **Start the MongoDB service:**
-   ```bash
-   brew services start mongodb-community
-   ```
+## ⚙️ Backend (Node/Express)
 
-3. **Verify it's running:**
-   ```bash
-   pgrep mongod
-   ```
+If the backend (Port 5001) hangs on startup:
+1. Ensure all packages are installed: `npm install` in the `backend` folder.
+2. If using `npm run dev` and it hangs, try running directly with `npx ts-node src/server.ts` to see immediate output.
 
-## ☁️ Alternative: Use MongoDB Atlas (Cloud)
+## 🌐 Frontend (Vite)
 
-If you don't want to run MongoDB locally, you can use a free cluster on MongoDB Atlas:
-
-1. Create a free account at [mongodb.com/atlas](https://www.mongodb.com/atlas).
-2. Create a "Shared" cluster.
-3. Get your **Connection String** (it looks like `mongodb+srv://<username>:<password>@cluster.mongodb.net/medicare-ai`).
-4. Open `backend/.env` and replace `MONGODB_URI` with your connection string.
-
-## 🔄 After Fixing
-
-Once MongoDB is running:
-1. The backend server should automatically reconnect (or restart it).
-2. Go back to the website and try searching or registering again!
-
----
-> [!NOTE]
-> I have added a "Database Offline" detector to the backend. Now, instead of a generic failure, the app will explicitly tell you if the database is disconnected.
+- Port: `5173`
+- If you see a blank page, check the browser console for API connection errors.

@@ -19,30 +19,45 @@ if [ ! -d "venv" ]; then
     python3 -m venv venv
 fi
 source venv/bin/activate
-pip install -r requirements.txt > /dev/null 2>&1
+echo "Installing Python dependencies..."
+# pip install -r requirements.txt
 export FLASK_APP=app.py
-flask run --port=5002 &
+# Use nohup or similar to ensure it stays in background correctly
+nohup python app.py > ml_output.log 2>&1 &
 ML_PID=$!
+echo "ML Service started (PID: $ML_PID)"
 cd ..
 
 # 2. Start Backend (Node/Express)
 echo "⚙️  Starting Backend (Port 5001)..."
 cd backend
-npm run dev &
+# Check if node_modules exists
+if [ ! -d "node_modules" ]; then
+    echo "Installing Node dependencies for backend..."
+    npm install
+fi
+nohup npm run dev > backend_output.log 2>&1 &
 BACKEND_PID=$!
+echo "Backend started (PID: $BACKEND_PID)"
 cd ..
 
 # 3. Start Frontend (Vite)
 echo "🌐 Starting Frontend..."
 cd frontend
-npm run dev &
+if [ ! -d "node_modules" ]; then
+    echo "Installing Node dependencies for frontend..."
+    npm install
+fi
+nohup npm run dev > frontend_output.log 2>&1 &
 FRONTEND_PID=$!
+echo "Frontend started (PID: $FRONTEND_PID)"
 cd ..
 
-echo "✅ All services started!"
+echo "✅ All services starting in background!"
 echo "   - Frontend: http://localhost:5173"
 echo "   - Backend: http://localhost:5001"
 echo "   - ML Service: http://localhost:5002"
-echo "Press Ctrl+C to stop all services."
+echo "Logs are being written to *_output.log files."
+echo "Press Ctrl+C to stop all services (if running in this terminal)."
 
 wait

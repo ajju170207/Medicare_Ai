@@ -5,8 +5,7 @@ import {
     BellOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
-    HeartOutlined,
-    SafetyCertificateOutlined
+    HeartOutlined
 } from '@ant-design/icons';
 import {
     LayoutDashboard,
@@ -20,20 +19,48 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import LanguageSelector from '../components/LanguageSelector';
 import SharedHeader from '../components/SharedHeader';
+import { getNotifications, markAsRead } from '../services/notificationService';
+import type { Notification } from '../services/notificationService';
+import { formatDistanceToNow } from 'date-fns';
 
 const { Sider, Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
 
-const notifications = [
-    { title: 'New Report Available', description: 'Your health analysis for Feb 16 is ready.', time: '5m ago', type: 'info' },
-    { title: 'Appointment Reminder', description: 'Consultation with Dr. Sharma at 10 AM.', time: '1h ago', type: 'urgent' },
-    { title: 'Medication Alert', description: 'Time to take your Vitamin D supplement.', time: '3h ago', type: 'reminder' },
-];
+// Removed hardcoded notifications
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
     const { user, logout } = useAuthStore();
     const [collapsed, setCollapsed] = useState(false);
+    const [notifications, setNotifications] = useState<Notification[]>([]);
+    const [loadingNotifications, setLoadingNotifications] = useState(false);
+
+    const fetchNotifications = async () => {
+        try {
+            setLoadingNotifications(true);
+            const data = await getNotifications();
+            setNotifications(data);
+        } catch (error) {
+            console.error('Failed to fetch notifications:', error);
+        } finally {
+            setLoadingNotifications(false);
+        }
+    };
+
+    React.useEffect(() => {
+        fetchNotifications();
+    }, []);
+
+    const handleMarkAsRead = async (id: string) => {
+        try {
+            await markAsRead(id);
+            setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+        } catch (error) {
+            console.error('Failed to mark notification as read:', error);
+        }
+    };
+
+    const unreadCount = notifications.filter(n => !n.read).length;
 
     const menuItems = [
         { key: '/dashboard', icon: <LayoutDashboard className="w-4 h-4" />, label: 'Dashboard' },
@@ -128,15 +155,7 @@ const Dashboard: React.FC = () => {
                     }
                     extra={
                         <div className="flex items-center space-x-6">
-                            <div className="hidden md:flex items-center bg-gradient-to-r from-teal-500/10 to-teal-600/5 px-4 py-2 rounded-2xl border border-teal-100 shadow-sm group hover:shadow-md transition-all cursor-default">
-                                <div className="p-1.5 bg-teal-500 rounded-lg mr-3 shadow-sm group-hover:scale-110 transition-transform">
-                                    <SafetyCertificateOutlined className="text-white text-xs" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] uppercase tracking-wider font-extrabold text-teal-600 leading-none mb-0.5">Status</span>
-                                    <span className="text-xs font-bold text-teal-800 leading-none">VERIFIED PATIENT</span>
-                                </div>
-                            </div>
+                            {/* Removed redundant middle Verified Patient badge */}
                             <LanguageSelector />
 
                             <Space size="large" className="ml-4">
@@ -146,35 +165,47 @@ const Dashboard: React.FC = () => {
                                     overlayClassName="notification-dropdown"
                                     menu={{ items: [] }} // Using overlay instead
                                     dropdownRender={() => (
-                                        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+                                        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-80">
                                             <div className="p-4 bg-gray-50 border-b border-gray-100 flex items-center justify-between">
                                                 <Text strong className="text-gray-800">Notifications</Text>
-                                                <Badge count={3} color="#10b981" />
+                                                <Badge count={unreadCount} color="#10b981" />
                                             </div>
-                                            <List
-                                                itemLayout="horizontal"
-                                                dataSource={notifications}
-                                                renderItem={(item) => (
-                                                    <List.Item className="px-4 py-3 hover:bg-teal-50/50 cursor-pointer transition-colors border-b border-gray-50 last:border-none">
-                                                        <List.Item.Meta
-                                                            title={<Text strong className="text-sm">{item.title}</Text>}
-                                                            description={
-                                                                <div className="flex flex-col">
-                                                                    <Text type="secondary" className="text-xs">{item.description}</Text>
-                                                                    <Text className="text-[10px] text-teal-600 mt-1">{item.time}</Text>
-                                                                </div>
-                                                            }
-                                                        />
-                                                    </List.Item>
-                                                )}
-                                            />
+                                            <div className="max-h-96 overflow-y-auto">
+                                                <List
+                                                    itemLayout="horizontal"
+                                                    dataSource={notifications}
+                                                    loading={loadingNotifications}
+                                                    locale={{ emptyText: <div className="p-8 text-center text-gray-400">No notifications yet</div> }}
+                                                    renderItem={(item) => (
+                                                        <List.Item
+                                                            className={`px-4 py-3 cursor-pointer transition-colors border-b border-gray-50 last:border-none ${!item.read ? 'bg-teal-50/30' : 'hover:bg-gray-50'}`}
+                                                            onClick={() => !item.read && handleMarkAsRead(item.id)}
+                                                        >
+                                                            <List.Item.Meta
+                                                                title={
+                                                                    <div className="flex items-center justify-between">
+                                                                        <Text strong className={`text-sm ${!item.read ? 'text-teal-900' : 'text-gray-700'}`}>{item.title}</Text>
+                                                                        {!item.read && <div className="w-2 h-2 rounded-full bg-teal-500 shadow-sm"></div>}
+                                                                    </div>
+                                                                }
+                                                                description={
+                                                                    <div className="flex flex-col mt-0.5">
+                                                                        <Text className={`text-xs ${!item.read ? 'text-gray-700' : 'text-gray-500'}`}>{item.body}</Text>
+                                                                        <Text className="text-[10px] text-gray-400 mt-1">{formatDistanceToNow(new Date(item.created_at), { addSuffix: true })}</Text>
+                                                                    </div>
+                                                                }
+                                                            />
+                                                        </List.Item>
+                                                    )}
+                                                />
+                                            </div>
                                             <div className="p-2 text-center bg-gray-50 border-t border-gray-100">
-                                                <Button type="link" size="small" className="text-teal-600 font-semibold">View All Notifications</Button>
+                                                <Button type="link" size="small" className="text-teal-600 font-semibold" onClick={fetchNotifications}>Refresh</Button>
                                             </div>
                                         </div>
                                     )}
                                 >
-                                    <Badge count={3} offset={[-2, 6]} color="#10b981">
+                                    <Badge count={unreadCount} offset={[-2, 6]} color="#10b981">
                                         <Button
                                             type="text"
                                             icon={<BellOutlined />}
@@ -182,18 +213,21 @@ const Dashboard: React.FC = () => {
                                         />
                                     </Badge>
                                 </Dropdown>
-                                <Space className="bg-teal-50 p-1.5 pl-4 rounded-full border border-teal-100">
-                                    <div className="text-right hidden md:block">
-                                        <Text strong className="block text-sm text-gray-800">{(user as any)?.firstName} {(user as any)?.lastName}</Text>
-                                        <Text className="text-[10px] uppercase tracking-widest font-bold text-teal-600">Verified Patient</Text>
+                                <div className="flex items-center bg-white py-1.5 pl-4 pr-1.5 rounded-full border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                                    <div className="text-right hidden md:block mr-3">
+                                        <Text strong className="block text-sm text-gray-800 leading-tight">{(user as any)?.firstName} {(user as any)?.lastName}</Text>
+                                        <div className="flex items-center justify-end">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-teal-500 mr-1.5 animate-pulse"></div>
+                                            <span className="text-[10px] uppercase tracking-wider font-black text-teal-600 leading-none">Verified Patient</span>
+                                        </div>
                                     </div>
                                     <Avatar
                                         size={40}
-                                        className="bg-teal-500 shadow-lg border-2 border-white"
+                                        className="bg-teal-500 shadow-sm border-2 border-white group-hover:scale-105 transition-transform"
                                     >
                                         {(user as any)?.firstName?.charAt(0)}
                                     </Avatar>
-                                </Space>
+                                </div>
                             </Space>
                         </div>
                     }
