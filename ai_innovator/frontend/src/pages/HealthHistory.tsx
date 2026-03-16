@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Layout, Card, Typography, List, Tag, Button, Empty, Divider, message, Spin, Space } from 'antd';
+import { Layout, Card, Typography, List, Tag, Button, Empty, Divider, message, Spin } from 'antd';
 import {
     HistoryOutlined,
     CheckCircleOutlined,
     FileTextOutlined,
     ClockCircleOutlined,
-    RightOutlined,
     DeleteOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -112,23 +111,12 @@ const HealthHistory: React.FC = () => {
                                                     </div>
                                                     <Text className="text-[10px] text-gray-400 block">{Math.round((item.confidence || 0) * 100)}% Match</Text>
                                                 </div>
-                                                <Space>
-                                                    <Button
-                                                        type="primary"
-                                                        ghost
-                                                        className="rounded-xl border-teal-200 text-teal-600 font-bold h-10 px-6 group-hover:bg-teal-600 group-hover:text-white transition-all"
-                                                        icon={<RightOutlined />}
-                                                        onClick={() => navigate(`/history/${item.id}`)}
-                                                    >
-                                                        Details
-                                                    </Button>
-                                                    <Button
-                                                        danger
-                                                        type="text"
-                                                        icon={<DeleteOutlined />}
-                                                        onClick={() => handleDelete(item.id)}
-                                                    />
-                                                </Space>
+                                                <Button
+                                                    danger
+                                                    type="text"
+                                                    icon={<DeleteOutlined />}
+                                                    onClick={() => handleDelete(item.id)}
+                                                />
                                             </div>
                                         </div>
                                     </div>

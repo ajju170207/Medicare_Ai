@@ -28,12 +28,10 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
 
         // 1. Call ML Microservice for prediction
         try {
-            console.log(`Calling ML Service at ${ML_SERVICE_URL}/predict with symptoms:`, symptoms);
             const mlResponse = await axios.post(`${ML_SERVICE_URL}/predict`, {
                 symptoms: Array.isArray(symptoms) ? symptoms : [symptoms]
             });
             mlPrediction = mlResponse.data;
-            console.log('ML Service response:', mlPrediction);
         } catch (error: any) {
             console.error('ML Service unavailable or failed:', error.message);
         }
@@ -77,8 +75,6 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
                 workout: mlPrediction?.workout || [],
             }
         };
-
-        console.log('Final Result being sent to frontend:', JSON.stringify(finalResult, null, 2));
 
         // Map Gemini/ML urgency to database enums
         let dbSeverity: 'mild' | 'moderate' | 'severe' = 'mild';

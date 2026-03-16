@@ -34,7 +34,6 @@ const SymptomChecker: React.FC = () => {
         };
 
         try {
-            console.log('Analyzing symptoms:', payload);
             const res = await api.post('/symptoms/analyze', payload);
             if (res.data.success) {
                 setAnalysisResult(res.data.data.result);

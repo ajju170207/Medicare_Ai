@@ -12,7 +12,7 @@ const DiseaseLibrary: React.FC = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [diseases, setDiseases] = useState<any[]>([]);
-    const [, setSearchTerm] = useState('');
+
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [chatLoading, setChatLoading] = useState(false);
     const [chatMessage, setChatMessage] = useState('');
@@ -60,7 +60,6 @@ const DiseaseLibrary: React.FC = () => {
     }, []);
 
     const onSearch = (value: string) => {
-        setSearchTerm(value);
         fetchDiseases(value);
     };
 
