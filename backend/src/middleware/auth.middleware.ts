@@ -1,45 +1,32 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import User, { IUser } from '../models/User';
+import { supabase } from '../config/supabase';
 
 export interface AuthRequest extends Request {
-    user?: IUser;
+    user?: any;
 }
 
-export const protect = async (
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-): Promise<void> => {
-    let token: string | undefined;
+export const protect = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+    let token;
 
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
-        token = req.headers.authorization.split(' ')[1];
-    }
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        try {
+            token = req.headers.authorization.split(' ')[1];
 
-    if (!token) {
-        res.status(401).json({ success: false, message: 'Not authorized to access this route' });
-        return;
-    }
+            // Verify token with Supabase
+            const { data: { user }, error } = await supabase.auth.getUser(token);
 
-    try {
-        // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { id: string };
+            if (error || !user) {
+                res.status(401).json({ success: false, message: 'Not authorized, token failed' });
+                return;
+            }
 
-        // Load full profile from MongoDB
-        const user = await User.findById(decoded.id).select('-password');
-
-        if (!user) {
-            res.status(401).json({ success: false, message: 'User not found' });
-            return;
+            // We attach the user id to req.user for downstream controllers
+            req.user = { id: user.id };
+            next();
+        } catch (error) {
+            res.status(401).json({ success: false, message: 'Not authorized, token failed' });
         }
-
-        req.user = user;
-        next();
-    } catch (err) {
-        res.status(401).json({ success: false, message: 'Not authorized to access this route' });
+    } else {
+        res.status(401).json({ success: false, message: 'Not authorized, no token' });
     }
 };

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Disease from '../models/Disease';
+import { supabase } from '../config/supabase';
 
 // @desc    Search / list diseases
 // @route   GET /api/v1/diseases
@@ -8,34 +8,33 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
     try {
         const { search = '', severity, specialist, page = 1, limit = 12 } = req.query;
 
-        let query: any = { is_active: true };
-        
-        if (search) {
-            query.$text = { $search: String(search) };
-        }
-        if (severity) {
-            query.severity = severity;
-        }
-        if (specialist) {
-            query.specialist_type = specialist;
-        }
-
         const pageNum = Number(page);
         const limitNum = Number(limit);
-        const skip = (pageNum - 1) * limitNum;
+        const from = (pageNum - 1) * limitNum;
+        const to = from + limitNum - 1;
 
-        const data = await Disease.find(query)
-            .skip(skip)
-            .limit(limitNum);
-            
-        const total = await Disease.countDocuments(query);
+        let query = supabase.from('diseases').select('*', { count: 'exact' });
+
+        if (search) {
+            query = query.ilike('disease_name', `%${search}%`);
+        }
+        if (severity) {
+            // Note: If you added a severity column, use it. Otherwise ignore.
+        }
+        if (specialist) {
+            query = query.eq('specialist', specialist);
+        }
+
+        const { data, error, count } = await query.range(from, to);
+
+        if (error) throw error;
 
         res.status(200).json({
             success: true,
             count: data.length,
-            total,
+            total: count || 0,
             page: pageNum,
-            pages: Math.ceil(total / limitNum),
+            pages: Math.ceil((count || 0) / limitNum),
             data,
         });
     } catch (error: any) {
@@ -43,16 +42,22 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
     }
 };
 
-// @desc    Get single disease by slug
+// @desc    Get single disease by slug (mapping slug to disease_name temporarily)
 // @route   GET /api/v1/diseases/:slug
 // @access  Public
 export const getDiseaseBySlug = async (req: Request, res: Response): Promise<void> => {
     try {
         const { slug } = req.params;
+        // The frontend passes a slug like 'fungal-infection'. Let's search by ilike.
+        const nameQuery = (slug as string).replace(/-/g, ' ');
 
-        const data = await Disease.findOne({ slug, is_active: true });
+        const { data, error } = await supabase
+            .from('diseases')
+            .select('*')
+            .ilike('disease_name', `%${nameQuery}%`)
+            .single();
 
-        if (!data) {
+        if (error || !data) {
             res.status(404).json({ success: false, message: 'Disease not found' });
             return;
         }

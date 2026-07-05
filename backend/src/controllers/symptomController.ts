@@ -1,12 +1,10 @@
 import { Response } from 'express';
 import axios from 'axios';
 import { AuthRequest } from '../middleware/auth.middleware';
-import UserHistory from '../models/UserHistory';
-import Notification from '../models/Notification';
-import DailyTip from '../models/DailyTip';
 import { analyzeSymptoms } from '../services/geminiService';
 import { sendNotificationEmail } from '../services/emailService';
 import { diseaseMappings } from '../utils/diseaseMapping';
+import { supabase } from '../config/supabase';
 
 // ML Service URL (Python Flask)
 const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://localhost:5002';
@@ -76,69 +74,48 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
             }
         };
 
-        // Map Gemini/ML urgency to database enums
-        let dbSeverity: 'mild' | 'moderate' | 'severe' = 'mild';
-        let dbUrgency: 'low' | 'medium' | 'high' = 'low';
-
+        let dbUrgency = 'low';
         const urgencyStr = (finalResult.urgency || 'non-urgent').toLowerCase();
         if (urgencyStr.includes('emergency') || urgencyStr === 'high' || urgencyStr === 'severe') {
-            dbSeverity = 'severe';
             dbUrgency = 'high';
         } else if (urgencyStr.includes('urgent') || urgencyStr === 'medium' || urgencyStr === 'moderate') {
-            dbSeverity = 'moderate';
             dbUrgency = 'medium';
-        } else {
-            dbSeverity = 'mild';
-            dbUrgency = 'low';
         }
 
-        // 3. Save to MongoDB
-        const historyEntry = new UserHistory({
-            user_id: req.user!.id,
-            type: 'symptom_check',
-            input_data: { symptoms, duration, severity, location, age, gender },
-            result: finalResult,
-            disease_name: finalResult.primaryCondition,
-            confidence: finalResult.confidence,
-            severity: dbSeverity,
-            urgency: dbUrgency,
-        });
+        // 3. Save to Supabase User History
+        const { data: history, error: historyError } = await supabase
+            .from('user_history')
+            .insert({
+                user_id: req.user!.id,
+                symptoms: Array.isArray(symptoms) ? symptoms : [symptoms],
+                predicted_disease: finalResult.primaryCondition,
+                chat_summary: JSON.stringify(finalResult)
+            })
+            .select()
+            .single();
 
-        const history = await historyEntry.save();
+        if (historyError) console.error("Failed to save history to Supabase:", historyError);
 
-        // 4. Create Notification and Send Email
+        // 4. Create Notification
         const notificationTitle = 'New Symptom Analysis Ready';
         const notificationBody = `Your health analysis for ${finalResult.primaryCondition} is complete. Risk level: ${dbUrgency.toUpperCase()}.`;
 
         try {
-            await Notification.create({
+            await supabase.from('notifications').insert({
                 user_id: req.user!.id,
                 title: notificationTitle,
-                body: notificationBody,
-                type: 'alert',
-                action_url: `/history/${history.id}`,
-                metadata: { history_id: history.id, condition: finalResult.primaryCondition }
+                message: notificationBody,
+                type: 'alert'
             });
-
-            if (req.user!.email) {
+            
+            // Try fetch user email for notification
+            const { data: userData } = await supabase.from('users').select('email').eq('id', req.user!.id).single();
+            if (userData?.email) {
                 await sendNotificationEmail(
-                    req.user!.email,
+                    userData.email,
                     notificationTitle,
                     notificationBody,
-                    `
-                    <div style="font-family: sans-serif; color: #374151;">
-                        <h2 style="color: #0d9488;">Health Analysis Ready</h2>
-                        <p>Hello,</p>
-                        <p>A new health assessment has been generated for you.</p>
-                        <div style="background-color: #f0fdfa; padding: 20px; border-radius: 12px; border: 1px solid #ccfbf1;">
-                            <p><strong>Primary Condition:</strong> ${finalResult.primaryCondition}</p>
-                            <p><strong>Urgency:</strong> <span style="color: ${dbUrgency === 'high' ? '#ef4444' : '#0d9488'}; font-weight: bold;">${dbUrgency.toUpperCase()}</span></p>
-                            <p><strong>Description:</strong> ${finalResult.description}</p>
-                        </div>
-                        <p style="margin-top: 20px; font-style: italic; color: #6b7280;">Disclaimer: This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.</p>
-                        <p>Best regards,<br/>Medicare AI Team</p>
-                    </div>
-                    `
+                    `<p>Analysis ready for ${finalResult.primaryCondition}.</p>`
                 );
             }
         } catch (notifErr: any) {
@@ -147,7 +124,7 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
 
         res.status(200).json({
             success: true,
-            data: { result: finalResult, history_id: history.id },
+            data: { result: finalResult, history_id: history?.id },
         });
     } catch (error: any) {
         res.status(500).json({ success: false, message: error.message });
@@ -159,34 +136,31 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
 // @access  Private
 export const getUserHistory = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { type, limit = 20, page = 1 } = req.query;
+        const { page = 1, limit = 20 } = req.query;
         const pageNum = Number(page);
         const limitNum = Number(limit);
-        const skip = (pageNum - 1) * limitNum;
+        const from = (pageNum - 1) * limitNum;
+        const to = from + limitNum - 1;
 
-        let query: any = { user_id: req.user!.id, deleted_at: null };
+        const { data, error, count } = await supabase
+            .from('user_history')
+            .select('*', { count: 'exact' })
+            .eq('user_id', req.user!.id)
+            .order('created_at', { ascending: false })
+            .range(from, to);
 
-        if (type) {
-            query.type = type;
-        }
+        if (error) throw error;
 
-        const data = await UserHistory.find(query)
-            .sort({ createdAt: -1 })
-            .skip(skip)
-            .limit(limitNum);
-
-        const count = await UserHistory.countDocuments(query);
-
-        // Process for frontend compatibility
-        const formattedData = data.map(item => ({
-            ...item.toObject(),
-            id: item._id, // map _id to id
-            created_at: item.createdAt
+        // Process for frontend compatibility (parse chat_summary JSON if it exists)
+        const formattedData = data.map((item: any) => ({
+            ...item,
+            result: item.chat_summary ? JSON.parse(item.chat_summary) : {},
+            disease_name: item.predicted_disease
         }));
 
         res.status(200).json({
             success: true,
-            count,
+            count: data.length,
             data: formattedData,
         });
     } catch (error: any) {
@@ -201,29 +175,23 @@ export const getDashboard = async (req: AuthRequest, res: Response): Promise<voi
     try {
         const userId = req.user!.id;
 
-        const [total_checks, recent_checks_raw, unread_notifications, daily_tip] = await Promise.all([
-            UserHistory.countDocuments({ user_id: userId, deleted_at: null }),
-            UserHistory.find({ user_id: userId, deleted_at: null })
-                .sort({ createdAt: -1 })
-                .limit(5)
-                .select('_id createdAt disease_name severity'),
-            Notification.countDocuments({ user_id: userId, read: false }),
-            DailyTip.findOne({ is_active: true, tip_date: { $lte: new Date() } })
-                .sort({ tip_date: -1 })
-        ]);
+        // Fetch counts and recents
+        const { count: total_checks } = await supabase.from('user_history').select('*', { count: 'exact', head: true }).eq('user_id', userId);
+        const { data: recent_checks_raw } = await supabase.from('user_history').select('id, created_at, predicted_disease').eq('user_id', userId).order('created_at', { ascending: false }).limit(5);
+        const { count: unread_notifications } = await supabase.from('notifications').select('*', { count: 'exact', head: true }).eq('user_id', userId).eq('read', false);
+        const { data: daily_tip } = await supabase.from('daily_tips').select('*').limit(1).single();
 
-        const recent_checks = recent_checks_raw.map(check => ({
-            id: check._id,
-            created_at: check.createdAt,
-            disease_name: check.disease_name,
-            severity: check.severity
-        }));
+        const recent_checks = recent_checks_raw?.map((check: any) => ({
+            id: check.id,
+            created_at: check.created_at,
+            disease_name: check.predicted_disease,
+        })) || [];
 
         const dashboardData = {
-            total_checks,
+            total_checks: total_checks || 0,
             recent_checks,
-            unread_notifications,
-            daily_tip: daily_tip ? { tip_text: daily_tip.tip_text, id: daily_tip._id } : null
+            unread_notifications: unread_notifications || 0,
+            daily_tip: daily_tip ? { tip_text: daily_tip.tip_text, id: daily_tip.id } : null
         };
 
         res.status(200).json({ success: true, data: dashboardData });
@@ -239,15 +207,13 @@ export const deleteHistoryItem = async (req: AuthRequest, res: Response): Promis
     try {
         const { id } = req.params;
 
-        const item = await UserHistory.findOneAndUpdate(
-            { _id: id, user_id: req.user!.id },
-            { deleted_at: new Date() }
-        );
+        const { error } = await supabase
+            .from('user_history')
+            .delete()
+            .eq('id', id)
+            .eq('user_id', req.user!.id);
 
-        if (!item) {
-            res.status(404).json({ success: false, message: 'History item not found or unauthorized' });
-            return;
-        }
+        if (error) throw error;
 
         res.status(200).json({ success: true, message: 'History item deleted' });
     } catch (error: any) {

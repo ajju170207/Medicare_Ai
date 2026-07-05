@@ -13,13 +13,8 @@ import diseaseRoutes from './routes/disease.routes';
 import hospitalRoutes from './routes/hospital.routes';
 import uploadRoutes from './routes/upload.routes';
 import chatRoutes from './routes/diseaseChat.routes';
-import connectDB from './config/db';
-
 // Load env vars
 dotenv.config();
-
-// Connect to Database
-connectDB();
 
 const app = express();
 

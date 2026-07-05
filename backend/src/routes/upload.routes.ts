@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import { uploadFile } from '../services/s3Service';
 import { AuthRequest } from '../middleware/auth.middleware';
-import User from '../models/User';
+import { supabase } from '../config/supabase';
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -22,8 +22,8 @@ router.post('/avatar', upload.single('image'), async (req: AuthRequest, res) => 
             req.file.mimetype
         );
 
-        // Update user avatar in MongoDB
-        await User.findByIdAndUpdate(req.user!.id, { avatar_url: imageUrl });
+        // Update user avatar in Supabase
+        await supabase.from('users').update({ avatar_url: imageUrl }).eq('id', req.user!.id);
 
         res.status(200).json({
             success: true,

@@ -1,15 +1,20 @@
 import { Response } from 'express';
 import { AuthRequest } from '../middleware/auth.middleware';
-import Notification from '../models/Notification';
+import { supabase } from '../config/supabase';
 
 // @desc    Get user notifications
 // @route   GET /api/v1/notifications
 // @access  Private
 export const getUserNotifications = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const data = await Notification.find({ user_id: req.user!.id })
-            .sort({ createdAt: -1 })
+        const { data, error } = await supabase
+            .from('notifications')
+            .select('*')
+            .eq('user_id', req.user!.id)
+            .order('created_at', { ascending: false })
             .limit(50);
+
+        if (error) throw error;
 
         res.status(200).json({
             success: true,
@@ -27,13 +32,15 @@ export const markAsRead = async (req: AuthRequest, res: Response): Promise<void>
     try {
         const { id } = req.params;
 
-        const data = await Notification.findOneAndUpdate(
-            { _id: id, user_id: req.user!.id },
-            { read: true, read_at: new Date() },
-            { new: true }
-        );
+        const { data, error } = await supabase
+            .from('notifications')
+            .update({ read: true })
+            .eq('id', id)
+            .eq('user_id', req.user!.id)
+            .select()
+            .single();
 
-        if (!data) {
+        if (error || !data) {
             res.status(404).json({ success: false, message: 'Notification not found' });
             return;
         }
@@ -52,10 +59,13 @@ export const markAsRead = async (req: AuthRequest, res: Response): Promise<void>
 // @access  Private
 export const markAllAsRead = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        await Notification.updateMany(
-            { user_id: req.user!.id, read: false },
-            { read: true, read_at: new Date() }
-        );
+        const { error } = await supabase
+            .from('notifications')
+            .update({ read: true })
+            .eq('user_id', req.user!.id)
+            .eq('read', false);
+
+        if (error) throw error;
 
         res.status(200).json({
             success: true,
