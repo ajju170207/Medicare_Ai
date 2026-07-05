@@ -36,6 +36,7 @@ __pycache__
 # Datasets & Models
 *.csv
 *.pkl
+!RandomForest.pkl
 dataset/
 
 # Mac OS
