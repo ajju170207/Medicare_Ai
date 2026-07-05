@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0fdfa;
+  --color-primary-100: #ccfbf1;
+  --color-primary-200: #99f6e4;
+  --color-primary-300: #5eead4;
+  --color-primary-400: #2dd4bf;
+  --color-primary-500: #14b8a6;
+  --color-primary-600: #0d9488;
+  --color-primary-700: #0f766e;
+  --color-primary-800: #115e59;
+  --color-primary-900: #134e4a;
+  --color-primary-950: #042f2e;
+
+  --color-brand-blue: #0057D9;
+  --color-brand-green: #00B894;
+
+  --shadow-premium: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-premium-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+:root {
+  --primary-color: #0d9488;
+}
+
+body {
+  margin: 0;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f8fafc;
+  color: #1a202c;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.text-primary-500 {
+  color: #0d9488;
+}
+
+.text-primary-600 {
+  color: #0f766e;
+}
+
+.bg-primary-500 {
+  background-color: #0d9488;
+}
+
+/* Header & Sider Text Visibility Fixes */
+.ant-layout-header .ant-typography,
+.ant-layout-sider .ant-typography {
+  color: #1f2937 !important;
+}
+
+.ant-layout-header .ant-select-selection-item {
+  color: #1f2937 !important;
+  font-weight: 500 !important;
+}
+
+.ant-layout-header .ant-select-arrow {
+  color: #94a3b8 !important;
+}
+
+.ant-layout-header .ant-badge-count {
+  color: white !important;
+  box-shadow: 0 0 0 1px white !important;
+}
+
+/* Language Selector styling */
+.language-selector-container .ant-select-selector {
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1f2937 !important;
+  height: 40px !important;
+}
+
+.language-selector-container .ant-select-selector:hover {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Fix for Select items color in selection */
+.ant-select-selection-item span {
+  color: #1f2937 !important;
+}
+
+/* Dropdown styling */
+.notification-dropdown {
+  min-width: 320px;
+}
+
+.ant-select-dropdown .ant-select-item-option-content {
+  color: #1f2937 !important;
+}
+
+/* Menu Customization for Light Sider */
+.ant-menu-light.ant-menu-inline .ant-menu-item {
+  height: 50px !important;
+  line-height: 50px !important;
+  border-radius: 12px !important;
+  margin: 4px 8px !important;
+  width: calc(100% - 16px) !important;
+  color: #64748b !important;
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-item-selected {
+  background-color: rgba(20, 184, 166, 0.1) !important;
+  color: #0d9488 !important;
+  font-weight: 600 !important;
+}
+
+.ant-menu-light.ant-menu-inline .ant-menu-item:hover {
+  background-color: #f1f5f9 !important;
+  color: #0d9488 !important;
+}
