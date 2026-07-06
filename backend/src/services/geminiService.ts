@@ -29,7 +29,7 @@ export const analyzeSymptoms = async (
     `;
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const result = await model.generateContent({
             contents: [
@@ -62,7 +62,7 @@ export const analyzeSymptoms = async (
 
 export const chatWithAI = async (message: string, history: any[] = []) => {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const chat = model.startChat({
             history: history.map(msg => ({
