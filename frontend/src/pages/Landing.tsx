@@ -70,7 +70,7 @@ const Landing: React.FC = () => {
                                 </div>
                                 <Title level={1} className="text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-[1.1]" style={{ color: '#0f172a' }}>
                                     Your Personal AI <br />
-                                    <span className="text-blue-600">
+                                    <span className="text-green-600">
                                         Medical Assistant
                                     </span>
                                 </Title>
@@ -106,9 +106,26 @@ const Landing: React.FC = () => {
                             </Col>
                             
                             <Col xs={24} lg={12}>
-                                <div className="relative">
+                                <div className="relative flex flex-col items-center">
+                                    {/* Big SVG Robot Image */}
+                                    <div className="mb-8 transform hover:scale-105 transition-transform duration-500">
+                                        <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="120" cy="120" r="120" fill="#F0FDF4"/>
+                                            <rect x="65" y="85" width="110" height="90" rx="20" fill="#ffffff" stroke="#16A34A" strokeWidth="8"/>
+                                            <path d="M90 60C90 43.4315 103.431 30 120 30V30C136.569 30 150 43.4315 150 60V85H90V60Z" fill="#16A34A"/>
+                                            <circle cx="120" cy="30" r="10" fill="#22C55E" stroke="#ffffff" strokeWidth="4"/>
+                                            <line x1="120" y1="40" x2="120" y2="30" stroke="#16A34A" strokeWidth="6"/>
+                                            <circle cx="95" cy="120" r="12" fill="#16A34A"/>
+                                            <circle cx="145" cy="120" r="12" fill="#16A34A"/>
+                                            <path d="M105 145C105 145 112.5 155 120 155C127.5 155 135 145 135 145" stroke="#16A34A" strokeWidth="6" strokeLinecap="round"/>
+                                            <rect x="45" y="110" width="20" height="40" rx="10" fill="#16A34A"/>
+                                            <rect x="175" y="110" width="20" height="40" rx="10" fill="#16A34A"/>
+                                            <path d="M120 85L120 60" stroke="#ffffff" strokeWidth="4" strokeLinecap="round"/>
+                                        </svg>
+                                    </div>
+
                                     {/* Mockup Card */}
-                                    <div className="relative rounded-[2rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 p-6 md:p-8 z-10">
+                                    <div className="relative rounded-[2rem] overflow-hidden border border-slate-100 bg-white shadow-2xl shadow-slate-200/50 p-6 md:p-8 z-10 w-full">
                                         <div className="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-lg"><RobotOutlined /></div>
