@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Typography, Layout, Row, Col, Card } from 'antd';
 import { 
     RobotOutlined, 
-    StethoscopeOutlined, 
+    MedicineBoxOutlined, 
     SearchOutlined,
     GlobalOutlined,
     ArrowRightOutlined
@@ -121,7 +121,7 @@ const Landing: React.FC = () => {
                             <Col xs={24} md={8}>
                                 <Card className="bg-[#1e293b]/40 border-gray-800 hover:border-blue-500/50 hover:bg-[#1e293b]/60 transition-all duration-300 h-full rounded-3xl" bodyStyle={{ padding: '32px' }}>
                                     <div className="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center mb-6 text-blue-400 text-2xl">
-                                        <StethoscopeOutlined />
+                                        <MedicineBoxOutlined />
                                     </div>
                                     <Title level={3} style={{ color: 'white' }} className="mb-4">AI Symptom Checker</Title>
                                     <Paragraph className="text-gray-400 text-base leading-relaxed">
