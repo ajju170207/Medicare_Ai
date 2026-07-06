@@ -31,8 +31,8 @@ const Landing: React.FC = () => {
         <Layout className="min-h-screen bg-[#f8fafc] font-sans selection:bg-blue-200">
             {/* Header / Nav */}
             <Header 
-                className={`fixed w-full z-50 transition-all duration-300 px-6 md:px-12 ${scrolled ? 'bg-white/80 backdrop-blur-lg shadow-sm py-2 border-b border-gray-100' : 'bg-transparent py-4'}`} 
-                style={{ height: 'auto', lineHeight: 'normal' }}
+                className={`fixed w-full z-50 transition-all duration-300 px-6 md:px-12 ${scrolled ? 'shadow-sm py-2 border-b border-gray-100' : 'py-4'}`} 
+                style={{ height: 'auto', lineHeight: 'normal', background: scrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent', backdropFilter: scrolled ? 'blur(16px)' : 'none' }}
             >
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div className="flex items-center gap-3">
