@@ -42,20 +42,36 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
     }
 };
 
-// @desc    Get single disease by slug (mapping slug to disease_name temporarily)
-// @route   GET /api/v1/diseases/:slug
-// @access  Public
 export const getDiseaseBySlug = async (req: Request, res: Response): Promise<void> => {
     try {
         const { slug } = req.params;
-        // The frontend passes a slug like 'fungal-infection'. Let's search by ilike.
-        const nameQuery = (slug as string).replace(/-/g, ' ');
+        
+        // Check if the param is a UUID
+        const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug);
 
-        const { data, error } = await supabase
-            .from('diseases')
-            .select('*')
-            .ilike('name', `%${nameQuery}%`)
-            .single();
+        let query = supabase.from('diseases').select('*');
+
+        if (isUUID) {
+            query = query.eq('id', slug);
+        } else {
+            // Try matching by the new slug column first
+            const { data: slugData, error: slugError } = await supabase
+                .from('diseases')
+                .select('*')
+                .eq('slug', slug)
+                .single();
+
+            if (!slugError && slugData) {
+                res.status(200).json({ success: true, data: slugData });
+                return;
+            }
+
+            // Fallback to searching by name if slug didn't match (for older data)
+            const nameQuery = (slug as string).replace(/-/g, ' ');
+            query = query.ilike('name', `%${nameQuery}%`);
+        }
+
+        const { data, error } = await query.single();
 
         if (error || !data) {
             res.status(404).json({ success: false, message: 'Disease not found' });
