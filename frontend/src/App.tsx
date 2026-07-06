@@ -32,6 +32,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     loadSession();
+    // Silently ping the backend to wake up the Render Free Tier instance 
+    // while the user is reading the landing page, preventing a long cold start.
+    const apiUrl = import.meta.env.VITE_API_URL || 'https://medicare-ai.onrender.com';
+    fetch(`${apiUrl}/health`).catch(() => {});
   }, [loadSession]);
 
   return (
