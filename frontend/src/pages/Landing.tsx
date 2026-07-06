@@ -61,7 +61,7 @@ const Landing: React.FC = () => {
                                         Medical Assistant
                                     </span>
                                 </Title>
-                                <Paragraph className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                                <Paragraph className="text-xl mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed" style={{ color: '#9ca3af' }}>
                                     Experience lightning-fast symptom analysis, browse comprehensive disease libraries, and locate the nearest healthcare facilities in seconds.
                                 </Paragraph>
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -98,10 +98,10 @@ const Landing: React.FC = () => {
                                             <div className="h-3 bg-gray-700 rounded w-3/4"></div>
                                         </div>
                                         <div className="p-4 rounded-2xl bg-blue-900/30 border border-blue-800/50 w-[85%] ml-auto text-right">
-                                            <Text className="text-blue-100">I have a severe headache and fever.</Text>
+                                            <Text style={{ color: '#dbeafe' }}>I have a severe headache and fever.</Text>
                                         </div>
                                         <div className="p-4 rounded-2xl bg-gray-800/50 border border-gray-700/50 w-[90%]">
-                                            <Text className="text-gray-300">Based on your symptoms, this could be early signs of Migraine or Viral Fever. I recommend consulting a General Physician.</Text>
+                                            <Text style={{ color: '#d1d5db' }}>Based on your symptoms, this could be early signs of Migraine or Viral Fever. I recommend consulting a General Physician.</Text>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ const Landing: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-6 md:px-12">
                         <div className="text-center mb-16">
                             <Title level={2} style={{ color: 'white' }} className="text-4xl font-bold mb-4">Powerful Healthcare Tools</Title>
-                            <Paragraph className="text-gray-400 text-lg">Everything you need to make informed medical decisions.</Paragraph>
+                            <Paragraph style={{ color: '#9ca3af' }} className="text-lg">Everything you need to make informed medical decisions.</Paragraph>
                         </div>
                         <Row gutter={[24, 24]}>
                             <Col xs={24} md={8}>
@@ -124,7 +124,7 @@ const Landing: React.FC = () => {
                                         <MedicineBoxOutlined />
                                     </div>
                                     <Title level={3} style={{ color: 'white' }} className="mb-4">AI Symptom Checker</Title>
-                                    <Paragraph className="text-gray-400 text-base leading-relaxed">
+                                    <Paragraph style={{ color: '#9ca3af' }} className="text-base leading-relaxed">
                                         Input your symptoms and instantly receive AI-driven insights, possible conditions, and medical recommendations tailored for you.
                                     </Paragraph>
                                 </Card>
@@ -135,7 +135,7 @@ const Landing: React.FC = () => {
                                         <SearchOutlined />
                                     </div>
                                     <Title level={3} style={{ color: 'white' }} className="mb-4">Disease Library</Title>
-                                    <Paragraph className="text-gray-400 text-base leading-relaxed">
+                                    <Paragraph style={{ color: '#9ca3af' }} className="text-base leading-relaxed">
                                         Search and explore an extensive library of medical conditions. Learn about symptoms, precautions, diets, and treatments.
                                     </Paragraph>
                                 </Card>
@@ -146,7 +146,7 @@ const Landing: React.FC = () => {
                                         <GlobalOutlined />
                                     </div>
                                     <Title level={3} style={{ color: 'white' }} className="mb-4">Hospital Finder</Title>
-                                    <Paragraph className="text-gray-400 text-base leading-relaxed">
+                                    <Paragraph style={{ color: '#9ca3af' }} className="text-base leading-relaxed">
                                         Instantly locate the nearest hospitals, clinics, and pharmacies. Get directions and emergency contact numbers immediately.
                                     </Paragraph>
                                 </Card>
@@ -160,7 +160,7 @@ const Landing: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
                     <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                         <Title level={2} style={{ color: 'white' }} className="text-4xl md:text-5xl font-bold mb-6">Ready to take control of your health?</Title>
-                        <Paragraph className="text-xl text-gray-400 mb-10">
+                        <Paragraph style={{ color: '#9ca3af' }} className="text-xl mb-10">
                             Join thousands of users who trust Medicare AI for instant, reliable medical insights.
                         </Paragraph>
                         <Button 
@@ -171,7 +171,7 @@ const Landing: React.FC = () => {
                         >
                             Create Your Free Account
                         </Button>
-                        <Paragraph className="mt-6 text-gray-500 text-sm">
+                        <Paragraph style={{ color: '#6b7280' }} className="mt-6 text-sm">
                             Already have an account? <span className="text-blue-400 cursor-pointer hover:underline" onClick={() => navigate('/login')}>Log in here</span>.
                         </Paragraph>
                     </div>
@@ -180,9 +180,9 @@ const Landing: React.FC = () => {
 
             {/* Footer */}
             <footer className="border-t border-gray-800 bg-[#0a0f1c] py-8 text-center">
-                <Text className="text-gray-500">© 2026 Medicare AI. All rights reserved.</Text>
+                <Text style={{ color: '#6b7280' }}>© 2026 Medicare AI. All rights reserved.</Text>
                 <div className="mt-2">
-                    <Text className="text-gray-600 text-xs">Medical Disclaimer: This platform provides informational AI insights and is not a substitute for professional medical advice.</Text>
+                    <Text style={{ color: '#4b5563' }} className="text-xs">Medical Disclaimer: This platform provides informational AI insights and is not a substitute for professional medical advice.</Text>
                 </div>
             </footer>
         </Layout>
