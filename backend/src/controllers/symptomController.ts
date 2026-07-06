@@ -51,6 +51,14 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
             }
         }
 
+        if (!mlPrediction?.disease && (!geminiAnalysis || geminiAnalysis.primaryCondition === 'Consult a Doctor')) {
+             res.status(500).json({ 
+                 success: false, 
+                 message: "AI Analysis failed: ML Service is unreachable and Gemini API key is invalid or expired. Please check your Render environment variables (ML_SERVICE_URL and GEMINI_API_KEY)." 
+             });
+             return;
+        }
+
         // Combine results
         const finalResult = {
             primaryCondition: mlPrediction?.disease || geminiAnalysis?.primaryCondition || "Unknown",
