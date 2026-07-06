@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Typography, Layout, Row, Col, Card } from 'antd';
 import { 
-    RobotOutlined, 
     MedicineBoxOutlined, 
     SearchOutlined,
     GlobalOutlined,
