@@ -16,13 +16,13 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
         let query = supabase.from('diseases').select('*', { count: 'exact' });
 
         if (search) {
-            query = query.ilike('disease_name', `%${search}%`);
+            query = query.ilike('name', `%${search}%`);
         }
         if (severity) {
             // Note: If you added a severity column, use it. Otherwise ignore.
         }
         if (specialist) {
-            query = query.eq('specialist', specialist);
+            query = query.eq('specialist_type', specialist);
         }
 
         const { data, error, count } = await query.range(from, to);
@@ -54,7 +54,7 @@ export const getDiseaseBySlug = async (req: Request, res: Response): Promise<voi
         const { data, error } = await supabase
             .from('diseases')
             .select('*')
-            .ilike('disease_name', `%${nameQuery}%`)
+            .ilike('name', `%${nameQuery}%`)
             .single();
 
         if (error || !data) {
