@@ -24,11 +24,11 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
         let mlPrediction = null;
         let geminiAnalysis = null;
 
-        // 1. Call ML Microservice for prediction
+        // 1. Call ML Microservice for prediction (with a short timeout to prevent slow responses)
         try {
             const mlResponse = await axios.post(`${ML_SERVICE_URL}/predict`, {
                 symptoms: Array.isArray(symptoms) ? symptoms : [symptoms]
-            });
+            }, { timeout: 2000 }); // 2-second timeout
             mlPrediction = mlResponse.data;
         } catch (error: any) {
             console.error('ML Service unavailable or failed:', error.message);
@@ -68,9 +68,9 @@ export const analyzeUserSymptoms = async (req: AuthRequest, res: Response): Prom
             ].filter(Boolean).slice(0, 5),
             disclaimer: "This AI assessment is for informational purposes only. Consult a doctor for accurate diagnosis.",
             details: {
-                medications: mlPrediction?.medications || [],
-                diet: mlPrediction?.diet || [],
-                workout: mlPrediction?.workout || [],
+                medications: mlPrediction?.medications || geminiAnalysis?.medications || [],
+                diet: mlPrediction?.diet || geminiAnalysis?.diet || [],
+                workout: mlPrediction?.workout || geminiAnalysis?.workout || [],
             }
         };
 

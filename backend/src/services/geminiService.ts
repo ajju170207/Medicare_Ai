@@ -23,7 +23,10 @@ export const analyzeSymptoms = async (
     3. specialist: The type of medical specialist to consult (e.g., Dermatologist, Cardiologist, General Physician).
     4. urgency: One of 'emergency', 'urgent', or 'non-urgent'.
     5. recommendations: A list of 3-5 recommended next steps (home remedies, doctor visit, etc.).
-    6. disclaimer: A clear, professional medical disclaimer.
+    6. medications: A list of 2-4 recommended generic over-the-counter medications or first-aid treatments.
+    7. diet: A list of 2-4 dietary recommendations or foods to avoid.
+    8. workout: A list of 2-4 workout, posture, or lifestyle modifications.
+    9. disclaimer: A clear, professional medical disclaimer.
 
     Format your response as a single, valid JSON object ONLY. Do not include any text before or after the JSON.
     `;
@@ -55,6 +58,9 @@ export const analyzeSymptoms = async (
             specialist: "General Physician",
             urgency: "urgent",
             recommendations: ["Seek medical attention immediately if symptoms persist."],
+            medications: [],
+            diet: ["Stay hydrated and eat light, easily digestible meals."],
+            workout: ["Rest and avoid strenuous activity until symptoms improve."],
             disclaimer: "AI analysis failed. Please consult a healthcare professional."
         };
     }

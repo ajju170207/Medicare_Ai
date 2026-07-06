@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout, Card, Typography, Button, message, List, Badge, Spin, Row, Col, Empty, Input, Segmented, Tag } from 'antd';
 import {
     CompassOutlined,
@@ -7,17 +7,14 @@ import {
     SearchOutlined
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import api from '../services/api';
 import SharedHeader from '../components/SharedHeader';
 
 const { Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
-
-declare global {
-    interface Window {
-        google: any;
-    }
-}
 
 const ICONS = {
     private_hospital: {
@@ -42,35 +39,60 @@ const ICONS = {
     }
 };
 
+const createLeafletIcon = (iconDef: { path: string; fillColor: string; strokeColor: string }) => {
+    return L.divIcon({
+        className: 'custom-leaflet-icon',
+        html: `<svg viewBox="0 0 24 24" width="36" height="36" style="fill: ${iconDef.fillColor}; stroke: ${iconDef.strokeColor}; stroke-width: 1.5px; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));">
+                 <path d="${iconDef.path}" />
+               </svg>`,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -36]
+    });
+};
+
+const userIcon = L.divIcon({
+    className: 'custom-leaflet-user-icon',
+    html: `<div style="width: 20px; height: 20px; background: #60a5fa; border: 3px solid white; border-radius: 50%; box-shadow: 0 0 10px rgba(96,165,250,0.8);"></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+});
+
+// Component to programmatically move the map
+const MapUpdater: React.FC<{ center: [number, number]; zoom?: number }> = ({ center, zoom }) => {
+    const map = useMap();
+    useEffect(() => {
+        if (center && center[0] && center[1]) {
+            map.setView(center, zoom || map.getZoom());
+        }
+    }, [center, zoom, map]);
+    return null;
+};
+
 const HospitalFinder: React.FC = () => {
     const navigate = useNavigate();
-    const mapRef = useRef<HTMLDivElement>(null);
-    const googleMapRef = useRef<any>(null);
-    const markersRef = useRef<any[]>([]);
 
     const [loading, setLoading] = useState(false);
     const [hospitals, setHospitals] = useState<any[]>([]);
     const [filteredHospitals, setFilteredHospitals] = useState<any[]>([]);
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
     const [diseaseQuery, setDiseaseQuery] = useState('');
-    const [_userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+    const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+    const [mapCenter, setMapCenter] = useState<[number, number] | null>(null);
+    const [mapZoom, setMapZoom] = useState(14);
     const [recommendedSpecialist, setRecommendedSpecialist] = useState<{ specialist: string; types: string[]; emoji: string } | null>(null);
 
-    // Disease → specialist mapping sourced from the ML training dataset
     const DISEASE_SPECIALIST_MAP: Record<string, { specialist: string; types: string[]; emoji: string }> = {
-        // Skin
         'fungal': { specialist: 'Dermatologist', types: ['hospital', 'doctor', 'clinic'], emoji: '🧴' },
         'acne': { specialist: 'Dermatologist', types: ['hospital', 'doctor', 'clinic'], emoji: '🧴' },
         'psoriasis': { specialist: 'Dermatologist', types: ['hospital', 'doctor'], emoji: '🧴' },
         'impetigo': { specialist: 'Dermatologist', types: ['doctor', 'clinic'], emoji: '🧴' },
         'skin rash': { specialist: 'Dermatologist', types: ['doctor', 'clinic'], emoji: '🧴' },
         'rash': { specialist: 'Dermatologist', types: ['doctor', 'clinic'], emoji: '🧴' },
-        // Dental
         'dental': { specialist: 'Dentist', types: ['doctor', 'clinic'], emoji: '🦷' },
         'tooth': { specialist: 'Dentist', types: ['doctor', 'clinic'], emoji: '🦷' },
         'teeth': { specialist: 'Dentist', types: ['doctor', 'clinic'], emoji: '🦷' },
         'cavity': { specialist: 'Dentist', types: ['doctor', 'clinic'], emoji: '🦷' },
-        // Heart / Cardiovascular
         'heart attack': { specialist: 'Cardiologist', types: ['hospital', 'medical'], emoji: '❤️' },
         'heart': { specialist: 'Cardiologist', types: ['hospital', 'medical'], emoji: '❤️' },
         'hypertension': { specialist: 'Cardiologist', types: ['hospital', 'doctor'], emoji: '❤️' },
@@ -78,7 +100,6 @@ const HospitalFinder: React.FC = () => {
         'varicose': { specialist: 'Vascular Surgeon', types: ['hospital', 'doctor'], emoji: '🩺' },
         'blood pressure': { specialist: 'Cardiologist', types: ['hospital', 'doctor'], emoji: '❤️' },
         'bp': { specialist: 'Cardiologist', types: ['hospital', 'doctor'], emoji: '❤️' },
-        // Respiratory
         'asthma': { specialist: 'Pulmonologist', types: ['hospital', 'doctor', 'clinic'], emoji: '🫁' },
         'pneumonia': { specialist: 'Pulmonologist', types: ['hospital', 'medical'], emoji: '🫁' },
         'tuberculosis': { specialist: 'Pulmonologist', types: ['hospital', 'medical'], emoji: '🫁' },
@@ -86,7 +107,6 @@ const HospitalFinder: React.FC = () => {
         'cough': { specialist: 'General Physician', types: ['doctor', 'clinic', 'hospital'], emoji: '😷' },
         'cold': { specialist: 'General Physician', types: ['doctor', 'clinic'], emoji: '😷' },
         'breathing': { specialist: 'Pulmonologist', types: ['hospital', 'medical'], emoji: '🫁' },
-        // Digestive
         'gerd': { specialist: 'Gastroenterologist', types: ['hospital', 'doctor'], emoji: '🫀' },
         'gastroenteritis': { specialist: 'Gastroenterologist', types: ['hospital', 'doctor'], emoji: '🫀' },
         'peptic ulcer': { specialist: 'Gastroenterologist', types: ['hospital', 'doctor'], emoji: '🫀' },
@@ -97,18 +117,15 @@ const HospitalFinder: React.FC = () => {
         'stomach': { specialist: 'Gastroenterologist', types: ['hospital', 'doctor'], emoji: '🫀' },
         'diarrhea': { specialist: 'General Physician', types: ['doctor', 'clinic'], emoji: '😷' },
         'vomiting': { specialist: 'General Physician', types: ['doctor', 'clinic'], emoji: '😷' },
-        // Liver
         'hepatitis': { specialist: 'Hepatologist', types: ['hospital', 'doctor'], emoji: '🏥' },
         'jaundice': { specialist: 'Hepatologist', types: ['hospital', 'doctor'], emoji: '🏥' },
         'liver': { specialist: 'Hepatologist', types: ['hospital', 'doctor'], emoji: '🏥' },
         'alcoholic': { specialist: 'Hepatologist', types: ['hospital', 'doctor'], emoji: '🏥' },
-        // Endocrine
         'diabetes': { specialist: 'Endocrinologist', types: ['hospital', 'doctor'], emoji: '💉' },
         'thyroid': { specialist: 'Endocrinologist', types: ['hospital', 'doctor'], emoji: '💉' },
         'hypoglycemia': { specialist: 'Endocrinologist', types: ['hospital', 'doctor'], emoji: '💉' },
         'hypothyroidism': { specialist: 'Endocrinologist', types: ['hospital', 'doctor'], emoji: '💉' },
         'hyperthyroidism': { specialist: 'Endocrinologist', types: ['hospital', 'doctor'], emoji: '💉' },
-        // Immune / Infectious
         'aids': { specialist: 'Infectious Disease Specialist', types: ['hospital', 'doctor'], emoji: '🦠' },
         'hiv': { specialist: 'Infectious Disease Specialist', types: ['hospital', 'doctor'], emoji: '🦠' },
         'allergy': { specialist: 'Allergist', types: ['doctor', 'clinic'], emoji: '🤧' },
@@ -117,7 +134,6 @@ const HospitalFinder: React.FC = () => {
         'typhoid': { specialist: 'Infectious Disease Specialist', types: ['hospital', 'medical'], emoji: '🦠' },
         'chicken pox': { specialist: 'Dermatologist', types: ['hospital', 'doctor'], emoji: '🦠' },
         'chickenpox': { specialist: 'Dermatologist', types: ['hospital', 'doctor'], emoji: '🦠' },
-        // Musculoskeletal
         'arthritis': { specialist: 'Orthopedist', types: ['hospital', 'doctor'], emoji: '🦴' },
         'bone': { specialist: 'Orthopedist', types: ['hospital', 'doctor'], emoji: '🦴' },
         'fracture': { specialist: 'Orthopedist', types: ['hospital', 'medical'], emoji: '🦴' },
@@ -126,17 +142,14 @@ const HospitalFinder: React.FC = () => {
         'spondylosis': { specialist: 'Orthopedist', types: ['hospital', 'doctor'], emoji: '🦴' },
         'neck pain': { specialist: 'Orthopedist', types: ['hospital', 'doctor'], emoji: '🦴' },
         'back pain': { specialist: 'Orthopedist', types: ['hospital', 'doctor'], emoji: '🦴' },
-        // Neurological
         'migraine': { specialist: 'Neurologist', types: ['hospital', 'doctor'], emoji: '🧠' },
         'headache': { specialist: 'Neurologist', types: ['doctor', 'clinic'], emoji: '🧠' },
         'vertigo': { specialist: 'Neurologist', types: ['hospital', 'doctor'], emoji: '🧠' },
         'paralysis': { specialist: 'Neurologist', types: ['hospital', 'medical'], emoji: '🧠' },
         'stroke': { specialist: 'Neurologist', types: ['hospital', 'medical'], emoji: '🧠' },
-        // Urinary
         'uti': { specialist: 'Urologist', types: ['hospital', 'doctor'], emoji: '🧬' },
         'urinary': { specialist: 'Urologist', types: ['hospital', 'doctor'], emoji: '🧬' },
         'kidney': { specialist: 'Nephrologist', types: ['hospital', 'doctor'], emoji: '🧬' },
-        // General / Emergency
         'cancer': { specialist: 'Oncologist', types: ['hospital', 'medical'], emoji: '🏥' },
         'fever': { specialist: 'General Physician', types: ['doctor', 'clinic', 'hospital'], emoji: '🌡️' },
         'infection': { specialist: 'General Physician', types: ['doctor', 'clinic'], emoji: '🌡️' },
@@ -147,28 +160,20 @@ const HospitalFinder: React.FC = () => {
     const analyzeDisease = (query: string): { specialist: string; types: string[]; emoji: string } => {
         const lowerQuery = query.toLowerCase().trim();
         if (!lowerQuery) return { specialist: '', types: [], emoji: '' };
-
-        // Find best match in specialist map
         for (const [keyword, info] of Object.entries(DISEASE_SPECIALIST_MAP)) {
             if (lowerQuery.includes(keyword)) {
                 return info;
             }
         }
-        // Generic fallback
         return { specialist: 'General Physician', types: ['hospital', 'doctor', 'clinic', 'medical'], emoji: '🏥' };
     };
-
-
-
 
     const handleSearch = () => {
         if (!diseaseQuery.trim()) {
             setFilteredHospitals(hospitals);
             setRecommendedSpecialist(null);
-            updateMarkers(hospitals);
             return;
         }
-
         const rec = analyzeDisease(diseaseQuery);
         setRecommendedSpecialist(rec);
 
@@ -176,7 +181,6 @@ const HospitalFinder: React.FC = () => {
         if (categoryFilter !== 'all') {
             filtered = filtered.filter(h => h.category === categoryFilter);
         }
-
         if (rec.types.length > 0) {
             filtered = filtered.filter(h =>
                 rec.types.includes(h.type) ||
@@ -184,27 +188,27 @@ const HospitalFinder: React.FC = () => {
                 (h.type === 'medical' && rec.types.includes('hospital'))
             );
         }
-
         setFilteredHospitals(filtered);
-        updateMarkers(filtered);
-
-        if (filtered.length > 0 && googleMapRef.current) {
+        
+        if (filtered.length > 0) {
             message.success(`Found ${filtered.length} ${rec.specialist} facilities near you`);
             const first = filtered[0];
-            googleMapRef.current.panTo(first.location || { lat: first.latitude, lng: first.longitude });
-            googleMapRef.current.setZoom(15);
+            const lat = first.latitude || first.location?.lat;
+            const lng = first.longitude || first.location?.lng;
+            if (lat && lng) {
+                setMapCenter([lat, lng]);
+                setMapZoom(15);
+            }
         } else {
             message.warning(`No nearby ${rec.specialist} facilities found. See fallback recommendations below.`);
         }
     };
 
     useEffect(() => {
-        // Automatically sync filters when category changes, but symptoms need explicit search for better UX
         let filtered = hospitals;
         if (categoryFilter !== 'all') {
             filtered = filtered.filter(h => h.category === categoryFilter);
         }
-
         if (diseaseQuery.trim()) {
             const recInfo = analyzeDisease(diseaseQuery);
             filtered = filtered.filter(h =>
@@ -212,166 +216,11 @@ const HospitalFinder: React.FC = () => {
                 (h.type === 'hospital' && recInfo.types.includes('medical'))
             );
         }
-
         setFilteredHospitals(filtered);
-        setTimeout(() => updateMarkers(filtered), 100);
     }, [categoryFilter, hospitals]);
-
-    // Deep Dark Map Styles
-    const darkMapStyles = [
-        { elementType: "geometry", stylers: [{ color: "#0f172a" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#0f172a" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#94a3b8" }] },
-        {
-            featureType: "poi",
-            elementType: "labels",
-            stylers: [{ visibility: "off" }],
-        },
-        {
-            featureType: "poi.medical",
-            elementType: "labels",
-            stylers: [{ visibility: "on" }],
-        },
-        {
-            featureType: "poi.medical",
-            elementType: "geometry",
-            stylers: [{ color: "#1e293b" }],
-        },
-        {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [{ color: "#1e293b" }],
-        },
-        {
-            featureType: "road",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#64748b" }],
-        },
-        {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: [{ color: "#020617" }],
-        },
-        {
-            featureType: "administrative",
-            elementType: "labels",
-            stylers: [{ visibility: "off" }],
-        },
-        {
-            featureType: "transit",
-            stylers: [{ visibility: "off" }],
-        },
-    ];
-
-    const initMap = async (lat: number, lng: number) => {
-        if (!mapRef.current || !window.google) return;
-
-        try {
-            const { Map } = await window.google.maps.importLibrary("maps");
-            googleMapRef.current = new Map(mapRef.current, {
-                center: { lat, lng },
-                zoom: 14,
-                styles: darkMapStyles, // Apply Dark Theme
-                disableDefaultUI: true, // Hide extra map UI controls
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: true,
-                zoomControl: true,
-            });
-
-            // Add user marker
-            new window.google.maps.Marker({
-                position: { lat, lng },
-                map: googleMapRef.current,
-                title: "Your Location",
-                icon: {
-                    path: window.google.maps.SymbolPath.CIRCLE,
-                    scale: 12,
-                    fillColor: "#60a5fa",
-                    fillOpacity: 1,
-                    strokeWeight: 4,
-                    strokeColor: "#ffffff",
-                }
-            });
-        } catch (error) {
-            console.error("Error initializing map:", error);
-        }
-    };
-
-    const updateMarkers = (facilityList: any[]) => {
-        if (!googleMapRef.current || !window.google) return;
-
-        // Clear existing markers
-        markersRef.current.forEach(marker => marker.setMap(null));
-        markersRef.current = [];
-
-        // Add new markers
-        facilityList.forEach(facility => {
-            let iconDef = ICONS.private_hospital;
-            if (facility.type === 'hospital' || facility.type === 'medical') {
-                iconDef = facility.category === 'government' ? ICONS.govt_hospital : ICONS.private_hospital;
-            } else if (facility.type === 'doctor') {
-                iconDef = ICONS.doctor;
-            } else if (facility.type === 'pharmacy') {
-                iconDef = ICONS.pharmacy;
-            }
-
-            const marker = new window.google.maps.Marker({
-                position: { lat: facility.latitude || facility.location?.lat, lng: facility.longitude || facility.location?.lng },
-                map: googleMapRef.current,
-                title: facility.name,
-                animation: window.google.maps.Animation.DROP,
-                icon: {
-                    path: iconDef.path,
-                    fillColor: iconDef.fillColor,
-                    fillOpacity: 1,
-                    strokeWeight: 1.5,
-                    strokeColor: iconDef.strokeColor,
-                    scale: 1.3,
-                    anchor: new window.google.maps.Point(12, 12),
-                }
-            });
-
-            const infoWindow = new window.google.maps.InfoWindow({
-                content: `
-                    <div style="padding: 12px; background: #1f2937; color: white; border-radius: 12px; min-width: 220px;">
-                        <h4 style="margin: 0 0 8px 0; color: #60a5fa; font-size: 16px; font-weight: 600;">${facility.name}</h4>
-                        <p style="margin: 0 0 12px 0; font-size: 12px; color: #9ca3af; line-height: 1.4;">${facility.address || 'Address not available'}</p>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span style="font-weight: bold; color: #fbbf24; font-size: 13px;">${facility.phone || 'No phone'}</span>
-                                <span style="background: ${iconDef.fillColor}; color: white; padding: 2px 8px; border-radius: 6px; font-size: 10px; text-transform: uppercase; font-weight: 600;">
-                                    ${facility.category ? facility.category + ' ' : ''}${facility.type}
-                                </span>
-                            </div>
-                            <a 
-                                href="https://www.google.com/maps/dir/?api=1&destination=${facility.latitude || facility.location?.lat},${facility.longitude || facility.location?.lng}" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                style="text-align: center; background: #3b82f6; color: white; padding: 6px; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 500; margin-top: 4px;"
-                            >
-                                Get Directions
-                            </a>
-                        </div>
-                    </div>
-                `
-            });
-
-            marker.addListener("click", () => {
-                infoWindow.open({
-                    anchor: marker,
-                    map: googleMapRef.current,
-                    shouldFocus: false,
-                });
-            });
-
-            markersRef.current.push(marker);
-        });
-    };
 
     const getOsmHospitals = async (lat: number, lng: number) => {
         try {
-            // Query Overpass API for hospitals, clinics, doctors, and pharmacies within ~5km
             const query = `
                 [out:json][timeout:25];
                 (
@@ -389,19 +238,15 @@ const HospitalFinder: React.FC = () => {
                 body: query
             });
             const data = await response.json();
-
             return data.elements.filter((el: any) => el.type === 'node').map((el: any) => {
                 let facilityType = 'hospital';
                 if (el.tags.amenity === 'clinic' || el.tags.amenity === 'doctors') facilityType = 'doctor';
                 if (el.tags.amenity === 'pharmacy') facilityType = 'pharmacy';
-
-                const isGovt = el.id % 3 === 0; // Deterministic approach for missing OSM attributes
-                const category = isGovt ? 'government' : 'private';
-
+                const isGovt = el.id % 3 === 0;
                 return {
                     id: `osm-${el.id}`,
                     name: el.tags.name || `Unnamed ${facilityType}`,
-                    category: category,
+                    category: isGovt ? 'government' : 'private',
                     type: facilityType,
                     latitude: el.lat,
                     longitude: el.lon,
@@ -419,25 +264,17 @@ const HospitalFinder: React.FC = () => {
     const getHospitals = async (lat: number, lng: number) => {
         setLoading(true);
         try {
-            // 1. Fetch from our Database
             const response = await api.get(`/hospitals/nearby?lat=${lat}&lng=${lng}&type=hospital,pharmacy,doctor,medical`);
             let dbData = response.data.data || [];
-
             dbData = dbData.map((d: any) => ({
                 ...d,
-                category: d.hospital_type === 'government' ? 'government' : 'private' // Using real database value 'hospital_type'
+                category: d.hospital_type === 'government' ? 'government' : 'private'
             }));
-
-            // 2. Fetch from Overpass API (Live OpenStreetMap Data) to show maximum facilities
             const osmData = await getOsmHospitals(lat, lng);
-
-            // 3. Merge and deduplicate by name/location proximity (simple deduplication)
             const combinedData = [...dbData, ...osmData].filter((item, index, self) =>
                 index === self.findIndex((t) => t.name === item.name)
             );
-
             setHospitals(combinedData);
-            // the useEffect automatically processes filters and updates markers
         } catch (error: any) {
             message.error('Failed to find nearby healthcare facilities');
         } finally {
@@ -450,13 +287,12 @@ const HospitalFinder: React.FC = () => {
             message.error('Geolocation is not supported by your browser');
             return;
         }
-
         setLoading(true);
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude } = position.coords;
                 setUserLocation({ lat: latitude, lng: longitude });
-                initMap(latitude, longitude);
+                setMapCenter([latitude, longitude]);
                 getHospitals(latitude, longitude);
             },
             () => {
@@ -465,7 +301,7 @@ const HospitalFinder: React.FC = () => {
                 const mockLat = 40.7128;
                 const mockLng = -74.0060;
                 setUserLocation({ lat: mockLat, lng: mockLng });
-                initMap(mockLat, mockLng);
+                setMapCenter([mockLat, mockLng]);
                 getHospitals(mockLat, mockLng);
             }
         );
@@ -479,7 +315,6 @@ const HospitalFinder: React.FC = () => {
         setDiseaseQuery('');
         setCategoryFilter('all');
         setFilteredHospitals(hospitals);
-        updateMarkers(hospitals);
     };
 
     return (
@@ -598,17 +433,76 @@ const HospitalFinder: React.FC = () => {
                 <Row gutter={[24, 24]}>
                     <Col xs={24} lg={16}>
                         <Card
-                            className="shadow-sm border-none rounded-3xl overflow-hidden p-0"
+                            className="shadow-sm border-none rounded-3xl overflow-hidden p-0 relative"
                             bodyStyle={{ padding: 0 }}
                         >
-                            <div
-                                ref={mapRef}
-                                className="w-full h-[600px] bg-gray-100"
-                                style={{ borderRadius: '24px' }}
-                            >
-                                {!window.google && (
+                            <div className="w-full h-[600px] bg-gray-900 rounded-[24px] overflow-hidden">
+                                {mapCenter ? (
+                                    <MapContainer 
+                                        center={mapCenter} 
+                                        zoom={mapZoom} 
+                                        style={{ height: '100%', width: '100%', zIndex: 0 }}
+                                    >
+                                        <MapUpdater center={mapCenter} zoom={mapZoom} />
+                                        <TileLayer
+                                            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+                                        />
+                                        
+                                        {/* User Location Marker */}
+                                        {userLocation && (
+                                            <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon}>
+                                                <Popup>You are here</Popup>
+                                            </Marker>
+                                        )}
+
+                                        {/* Facility Markers */}
+                                        {filteredHospitals.map((facility, index) => {
+                                            let iconDef = ICONS.private_hospital;
+                                            if (facility.type === 'hospital' || facility.type === 'medical') {
+                                                iconDef = facility.category === 'government' ? ICONS.govt_hospital : ICONS.private_hospital;
+                                            } else if (facility.type === 'doctor') {
+                                                iconDef = ICONS.doctor;
+                                            } else if (facility.type === 'pharmacy') {
+                                                iconDef = ICONS.pharmacy;
+                                            }
+
+                                            const lat = facility.latitude || facility.location?.lat;
+                                            const lng = facility.longitude || facility.location?.lng;
+
+                                            if (!lat || !lng) return null;
+
+                                            return (
+                                                <Marker key={index} position={[lat, lng]} icon={createLeafletIcon(iconDef)}>
+                                                    <Popup className="custom-popup">
+                                                        <div style={{ background: '#1f2937', color: 'white', margin: '-14px', padding: '16px', borderRadius: '12px', minWidth: '240px' }}>
+                                                            <h4 style={{ margin: '0 0 8px 0', color: '#60a5fa', fontSize: '16px', fontWeight: 600 }}>{facility.name}</h4>
+                                                            <p style={{ margin: '0 0 12px 0', fontSize: '12px', color: '#9ca3af', lineHeight: 1.4 }}>{facility.address || 'Address not available'}</p>
+                                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                                    <span style={{ fontWeight: 'bold', color: '#fbbf24', fontSize: '13px' }}>{facility.phone || 'No phone'}</span>
+                                                                    <span style={{ background: iconDef.fillColor, color: 'white', padding: '2px 8px', borderRadius: '6px', fontSize: '10px', textTransform: 'uppercase', fontWeight: 600 }}>
+                                                                        {facility.category ? facility.category + ' ' : ''}{facility.type}
+                                                                    </span>
+                                                                </div>
+                                                                <a 
+                                                                    href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`} 
+                                                                    target="_blank" 
+                                                                    rel="noopener noreferrer"
+                                                                    style={{ display: 'block', textAlign: 'center', background: '#3b82f6', color: 'white', padding: '8px', borderRadius: '8px', textDecoration: 'none', fontSize: '13px', fontWeight: 500, marginTop: '8px' }}
+                                                                >
+                                                                    Get Directions
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </Popup>
+                                                </Marker>
+                                            );
+                                        })}
+                                    </MapContainer>
+                                ) : (
                                     <div className="flex items-center justify-center h-full">
-                                        <Spin tip="Loading Interactive Map..." />
+                                        <Spin tip="Loading Map..." />
                                     </div>
                                 )}
                             </div>
@@ -676,9 +570,11 @@ const HospitalFinder: React.FC = () => {
                                                 className="shadow-md border-none rounded-2xl bg-[#1e293b] hover:bg-[#334155] transition-all cursor-pointer w-full group"
                                                 bodyStyle={{ padding: '16px' }}
                                                 onClick={() => {
-                                                    if (googleMapRef.current) {
-                                                        googleMapRef.current.setCenter(item.location || { lat: item.latitude, lng: item.longitude });
-                                                        googleMapRef.current.setZoom(16);
+                                                    const lat = item.latitude || item.location?.lat;
+                                                    const lng = item.longitude || item.location?.lng;
+                                                    if (lat && lng) {
+                                                        setMapCenter([lat, lng]);
+                                                        setMapZoom(16);
                                                     }
                                                 }}
                                             >
@@ -700,9 +596,11 @@ const HospitalFinder: React.FC = () => {
                                                         className="rounded-lg text-[10px] h-7 px-3 border-blue-500/50 hover:border-blue-400"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
-                                                            if (googleMapRef.current) {
-                                                                googleMapRef.current.setCenter(item.location || { lat: item.latitude, lng: item.longitude });
-                                                                googleMapRef.current.setZoom(17);
+                                                            const lat = item.latitude || item.location?.lat;
+                                                            const lng = item.longitude || item.location?.lng;
+                                                            if (lat && lng) {
+                                                                setMapCenter([lat, lng]);
+                                                                setMapZoom(17);
                                                             }
                                                         }}
                                                     >
@@ -731,9 +629,23 @@ const HospitalFinder: React.FC = () => {
                     </Col>
                 </Row>
             </Content>
+            
+            {/* Inject minimal CSS for Leaflet Popups to override defaults */}
+            <style>{`
+                .leaflet-popup-content-wrapper {
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+                }
+                .leaflet-popup-tip-container {
+                    display: none;
+                }
+                .custom-popup .leaflet-popup-content {
+                    margin: 0;
+                }
+            `}</style>
         </Layout>
     );
 };
 
 export default HospitalFinder;
-

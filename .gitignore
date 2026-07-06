@@ -41,3 +41,7 @@ dataset/
 
 # Mac OS
 .DS_Store
+*.zip
+*.ipynb
+.vite/
+*.zip

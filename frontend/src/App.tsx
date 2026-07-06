@@ -10,6 +10,7 @@ import DiseaseDetail from './pages/DiseaseDetail';
 import HospitalFinder from './pages/HospitalFinder';
 import Profile from './pages/Profile';
 import HealthHistory from './pages/HealthHistory';
+import Landing from './pages/Landing';
 import { useAuthStore } from './store/authStore';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -45,6 +46,7 @@ const App: React.FC = () => {
     >
       <Router>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -54,7 +56,6 @@ const App: React.FC = () => {
           <Route path="/hospital-finder" element={<ProtectedRoute><HospitalFinder /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/history" element={<ProtectedRoute><HealthHistory /></ProtectedRoute>} />
-          <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </Router>
     </ConfigProvider>
