@@ -45,20 +45,21 @@ export const getDiseases = async (req: Request, res: Response): Promise<void> =>
 export const getDiseaseBySlug = async (req: Request, res: Response): Promise<void> => {
     try {
         const { slug } = req.params;
+        const slugStr = String(slug);
         
         // Check if the param is a UUID
-        const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slug);
+        const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(slugStr);
 
         let query = supabase.from('diseases').select('*');
 
         if (isUUID) {
-            query = query.eq('id', slug);
+            query = query.eq('id', slugStr);
         } else {
             // Try matching by the new slug column first
             const { data: slugData, error: slugError } = await supabase
                 .from('diseases')
                 .select('*')
-                .eq('slug', slug)
+                .eq('slug', slugStr)
                 .single();
 
             if (!slugError && slugData) {
